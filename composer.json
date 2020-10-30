@@ -1,0 +1,35 @@
+{
+  "name": "php-chatwork-client",
+
+  "require": {
+    "php": ">=7.1.8",
+    "guzzlehttp/guzzle": "^7.1",
+    "tightenco/collect": "^8.0",
+    "ext-json": "*",
+    "nesbot/carbon": "^2.41"
+  },
+
+  "require-dev": {
+    "phpunit/phpunit": "*",
+    "friendsofphp/php-cs-fixer": "*",
+    "phpstan/phpstan": "*"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "ChatWorkClient\\": "App/"
+    }
+  },
+
+  "autoload-dev": {
+    "psr-4": {
+      "ChatWorkClient\\": "Test/"
+    }
+  },
+
+  "scripts": {
+    "test": "./vendor/bin/phpunit",
+    "cs": "./vendor/bin/php-cs-fixer fix ./App",
+    "phpstan": "vendor/bin/phpstan analyse -l 1 ./App"
+  }
+}
