@@ -50,6 +50,6 @@ class MyEndPoint extends AbstractEndPoint
      */
     public function tasksAsCollection(): Collection
     {
-        return new Collection($this->getTasks());
+        return $this->arrayToCollection($this->getTasks());
     }
 }

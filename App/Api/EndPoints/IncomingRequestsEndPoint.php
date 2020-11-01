@@ -9,6 +9,9 @@ use ChatWorkClient\Entities\IncomingRequest;
 
 class IncomingRequestsEndPoint extends AbstractEndPoint
 {
+    /**
+     * @var IncomingRequestFactory
+     */
     private $incomingRequestFactory;
 
     public function __construct(ClientInterface $client, IncomingRequestFactory $incomingRequestFactory)

@@ -22,6 +22,6 @@ class MeEndPoint extends AbstractEndPoint
 
     public function getMe(): Me
     {
-        return $this->factory->entity($this->client->get('/me'));
+        return $this->factory->entity($this->client->get('me'));
     }
 }

@@ -12,7 +12,8 @@
   "require-dev": {
     "phpunit/phpunit": "*",
     "friendsofphp/php-cs-fixer": "*",
-    "phpstan/phpstan": "*"
+    "phpstan/phpstan": "*",
+    "phpspec/prophecy-phpunit": "^2.0"
   },
 
   "autoload": {

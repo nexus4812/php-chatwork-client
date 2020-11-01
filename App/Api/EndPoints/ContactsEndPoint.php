@@ -20,8 +20,11 @@ class ContactsEndPoint extends AbstractEndPoint
         $this->factory = $factory;
     }
 
-    public function getContacts(): Contacts
+    /**
+     * @return array<Contacts>
+     */
+    public function getContacts(): array
     {
-        return $this->factory->entity($this->client->get('/contacts'));
+        return $this->factory->entities($this->client->get('contacts'));
     }
 }
