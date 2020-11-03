@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Api\EndPoints;
 
 use ChatWorkClient\Entities\Contacts;
@@ -8,18 +7,16 @@ use ChatWorkClient\Entities\Factories\ContactsFactory;
 
 class ContactsEndPointTest extends AbstractEndPointForUnit
 {
-
     /**
      * @dataProvider providerResponseData
-     * @param array $apiResult
      */
     public function testGetContacts(array $apiResult)
     {
-        $clientProphecy= $this->createClientProphecy();
+        $clientProphecy = $this->createClientProphecy();
         $clientProphecy->get('contacts')->willReturn($apiResult);
 
         $endPoint = new ContactsEndPoint($clientProphecy->reveal(), new ContactsFactory());
-        $this->assertSame($endPoint->getContacts()[0]->account_id, $apiResult[0]["account_id"]);
+        $this->assertSame($endPoint->getContacts()[0]->account_id, $apiResult[0]['account_id']);
         $this->assertInstanceOf(Contacts::class, $endPoint->getContacts()[0]);
     }
 

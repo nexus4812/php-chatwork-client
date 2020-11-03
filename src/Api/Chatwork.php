@@ -1,10 +1,11 @@
 <?php
 
-
 namespace ChatWorkClient\Api;
 
 use ChatWorkClient\Api\EndPoints\ContactsEndPoint;
 use ChatWorkClient\Api\EndPoints\IncomingRequestsEndPoint;
+use ChatWorkClient\Api\EndPoints\MeEndPoint;
+use ChatWorkClient\Api\EndPoints\MyEndPoint;
 use ChatWorkClient\Api\EndPoints\RoomEndPoint;
 use ChatWorkClient\Client\ClientFactory;
 use ChatWorkClient\Client\ClientInterface;
@@ -12,37 +13,34 @@ use ChatWorkClient\Entities\Factories\ContactsFactory;
 use ChatWorkClient\Entities\Factories\FileFactory;
 use ChatWorkClient\Entities\Factories\IncomingRequestFactory;
 use ChatWorkClient\Entities\Factories\LinkFactory;
+use ChatWorkClient\Entities\Factories\MeFactory;
 use ChatWorkClient\Entities\Factories\MemberFactory;
 use ChatWorkClient\Entities\Factories\MessageFactory;
 use ChatWorkClient\Entities\Factories\MyTaskFactory;
-use ChatWorkClient\Entities\Factories\MeFactory;
 use ChatWorkClient\Entities\Factories\RoomFactory;
 use ChatWorkClient\Entities\Factories\StatusFactory;
 use ChatWorkClient\Entities\Factories\TaskFactory;
-use ChatWorkClient\Api\EndPoints\MeEndPoint;
-use ChatWorkClient\Api\EndPoints\MyEndPoint;
 
-class ChatWork
+class Chatwork
 {
     /**
      * @var ClientInterface
      */
     private $client;
 
-
     public function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }
 
-    public static function create(string $chatWorkApiToken):self
+    public static function create(string $chatWorkApiToken): self
     {
         return new self((new ClientFactory())->guzzleHttp($chatWorkApiToken));
     }
 
     public function me(): MeEndPoint
     {
-        return (new MeEndPoint($this->client, new MeFactory()));
+        return new MeEndPoint($this->client, new MeFactory());
     }
 
     public function my(): MyEndPoint
@@ -68,7 +66,7 @@ class ChatWork
         );
     }
 
-    public function IncomingRequest():IncomingRequestsEndPoint
+    public function IncomingRequest(): IncomingRequestsEndPoint
     {
         return new IncomingRequestsEndPoint($this->client, new IncomingRequestFactory());
     }

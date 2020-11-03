@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Api\EndPoints;
 
 use ChatWorkClient\Client\ClientInterface;

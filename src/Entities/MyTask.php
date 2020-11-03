@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Entities;
 
 use Carbon\CarbonImmutable;
@@ -46,7 +45,6 @@ class MyTask implements EntityInterface
      * @var string
      */
     public $limit_type;
-
 
     public function limitTime(): CarbonImmutable
     {

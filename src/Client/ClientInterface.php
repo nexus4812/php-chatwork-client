@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Client;
 
 use RuntimeException;
@@ -8,7 +7,6 @@ use RuntimeException;
 interface ClientInterface
 {
     /**
-     * @param string $path
      * @param array<string, int> $query
      *
      * @return array<string, array<string>>
@@ -18,7 +16,6 @@ interface ClientInterface
     public function get(string $path, array $query = []): array;
 
     /**
-     * @param string $path
      * @param array<string, int> $data
      *
      * @return array<string, array<string>>
@@ -28,7 +25,6 @@ interface ClientInterface
     public function post(string $path, array $data = []): array;
 
     /**
-     * @param string $path
      * @param array<string, int> $data
      *
      * @return array<string, array<string>>
@@ -38,7 +34,6 @@ interface ClientInterface
     public function put(string $path, array $data = []): array;
 
     /**
-     * @param string $path
      * @param array<string, int> $query
      *
      * @return array<string, array<string>>

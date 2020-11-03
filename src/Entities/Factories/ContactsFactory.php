@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Entities\Factories;
 
 use ChatWorkClient\Entities\Contacts;

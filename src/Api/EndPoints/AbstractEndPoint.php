@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Api\EndPoints;
 
 use ChatWorkClient\Client\ClientInterface;
@@ -13,12 +12,10 @@ abstract class AbstractEndPoint
      */
     protected $client;
 
-
     public function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }
-
 
     protected function arrayToCollection(array $array): Collection
     {

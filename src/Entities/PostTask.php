@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Entities\Factories;
 
 class PostTask

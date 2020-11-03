@@ -5,7 +5,6 @@ namespace ChatWorkClient\Entities\Factories;
 use ChatWorkClient\Entities\Message;
 use ChatWorkClient\Entities\MessageAccount;
 use ChatWorkClient\Entities\PostMessages;
-use ChatWorkClient\Entities\PutMembers;
 use ChatWorkClient\Entities\PutMessage;
 
 class MessageFactory extends AbstractEntityFactory implements EntityFactoryInterface
@@ -14,6 +13,7 @@ class MessageFactory extends AbstractEntityFactory implements EntityFactoryInter
     {
         $message = $this->createEntity(new Message(), $data);
         $message->account = $this->createEntity(new MessageAccount(), $data['account']);
+
         return $message;
     }
 

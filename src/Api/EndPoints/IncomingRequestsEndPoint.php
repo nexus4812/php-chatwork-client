@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Api\EndPoints;
 
 use ChatWorkClient\Client\ClientInterface;
@@ -21,18 +20,17 @@ class IncomingRequestsEndPoint extends AbstractEndPoint
     }
 
     /**
-     * GET /incoming_requests 自分に対するコンタクト承認依頼一覧を取得する(※100件まで取得可能。今後、より多くのデータを取得する為のページネーションの仕組みを提供予定)
+     * GET /incoming_requests 自分に対するコンタクト承認依頼一覧を取得する(※100件まで取得可能。今後、より多くのデータを取得する為のページネーションの仕組みを提供予定).
+     *
      * @return array<IncomingRequest>
      */
     public function getIncomingRequests(): array
     {
-        return $this->incomingRequestFactory->entities($this->client->get("incoming_requests"));
+        return $this->incomingRequestFactory->entities($this->client->get('incoming_requests'));
     }
 
     /**
-     * PUT /incoming_requests/{request_id} 自分に対するコンタクト承認依頼を承認する
-     * @param int $requestId
-     * @return IncomingRequest
+     * PUT /incoming_requests/{request_id} 自分に対するコンタクト承認依頼を承認する.
      */
     public function putIncomingRequests(int $requestId): IncomingRequest
     {
@@ -40,8 +38,7 @@ class IncomingRequestsEndPoint extends AbstractEndPoint
     }
 
     /**
-     * DELETE/incoming_requests/{request_id}自分に対するコンタクト承認依頼をキャンセルする
-     * @param int $requestId
+     * DELETE/incoming_requests/{request_id}自分に対するコンタクト承認依頼をキャンセルする.
      */
     public function deleteIncomingRequests(int $requestId): void
     {

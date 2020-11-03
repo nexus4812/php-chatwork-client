@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Entities;
 
 class PutMessage implements EntityInterface

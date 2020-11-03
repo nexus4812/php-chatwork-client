@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Api\EndPoints;
 
 use ChatWorkClient\Entities\Factories\IncomingRequestFactory;
@@ -10,12 +9,11 @@ class IncomingRequestsEndPointTest extends AbstractEndPointForUnit
 {
     /**
      * @dataProvider providerGetResponseData
-     * @param array $apiResult
      */
-    public function testGetIncomingRequests(array $apiResult):void
+    public function testGetIncomingRequests(array $apiResult): void
     {
         $clientProphecy = $this->createClientProphecy();
-        $clientProphecy->get("incoming_requests")->willReturn($apiResult);
+        $clientProphecy->get('incoming_requests')->willReturn($apiResult);
 
         $endPoint = new IncomingRequestsEndPoint($clientProphecy->reveal(), new IncomingRequestFactory());
         $this->assertSame($endPoint->getIncomingRequests()[0]->request_id, $apiResult[0]['request_id']);
@@ -24,7 +22,6 @@ class IncomingRequestsEndPointTest extends AbstractEndPointForUnit
 
     /**
      * @dataProvider providerPutResponseData
-     * @param array $apiResult
      */
     public function testPutIncomingRequests(array $apiResult): void
     {
@@ -55,7 +52,8 @@ class IncomingRequestsEndPointTest extends AbstractEndPointForUnit
 
     public function providerPutResponseData()
     {
-        $this->jsonDataToArray('{
+        $this->jsonDataToArray(
+            '{
   "account_id": 363,
   "room_id": 1234,
   "name": "John Smith",

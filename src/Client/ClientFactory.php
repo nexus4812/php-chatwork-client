@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Client;
 
 use GuzzleHttp\Client;
@@ -20,6 +19,7 @@ class ClientFactory
                 'X-ChatWorkToken' => $chatWorkToken,
             ],
         ]);
+
         return new GuzzleClient($client);
     }
 }

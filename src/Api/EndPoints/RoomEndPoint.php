@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Api\EndPoints;
 
 use ChatWorkClient\Client\ClientInterface;
@@ -24,7 +23,6 @@ use Tightenco\Collect\Support\Collection;
 
 class RoomEndPoint extends AbstractEndPoint
 {
-
     /**
      * @var RoomFactory
      */
@@ -55,7 +53,6 @@ class RoomEndPoint extends AbstractEndPoint
      */
     private $fileFactory;
 
-
     public function __construct(
         ClientInterface $client,
         RoomFactory $roomFactory,
@@ -75,20 +72,21 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * GET /rooms 自分のチャット一覧の取得
+     * GET /rooms 自分のチャット一覧の取得.
+     *
      * @return array<Room>
      */
     public function getRooms(): array
     {
-        return $this->roomFactory->entities($this->client->get("rooms"));
+        return $this->roomFactory->entities($this->client->get('rooms'));
     }
 
     /**
-     * POST /rooms グループチャットを新規作成
+     * POST /rooms グループチャットを新規作成.
      *
-     * @param array<int> $membersAdminIds
-     * @param string $name
+     * @param array<int>   $membersAdminIds
      * @param array<mixed> $options
+     *
      * @return int room_id
      */
     public function postRoom(array $membersAdminIds, string $name, $options = []): int
@@ -100,10 +98,7 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * GET /rooms/{room_id} チャットの名前、アイコン、種類(my/direct/group)を取得
-     *
-     * @param int $roomId
-     * @return Room
+     * GET /rooms/{room_id} チャットの名前、アイコン、種類(my/direct/group)を取得.
      */
     public function getRoom(int $roomId): Room
     {
@@ -111,10 +106,9 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * PUT /rooms/{room_id} チャットの名前、アイコンをアップデート
-     * @param int $roomId
+     * PUT /rooms/{room_id} チャットの名前、アイコンをアップデート.
+     *
      * @param array $option
-     * @return int
      */
     public function putRoom(int $roomId, $option = []): int
     {
@@ -122,7 +116,6 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * @param int $roomId
      * @param string $actionType leave or delete
      */
     public function deleteRoom(int $roomId, string $actionType = 'leave'): void
@@ -131,8 +124,8 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * GET /rooms/{room_id}/members チャットのメンバー一覧を取得
-     * @param int $roomId
+     * GET /rooms/{room_id}/members チャットのメンバー一覧を取得.
+     *
      * @return array<Member>
      */
     public function getRoomMembers(int $roomId): array
@@ -141,13 +134,11 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * PUT /rooms/{room_id}/members チャットのメンバーを一括変更
+     * PUT /rooms/{room_id}/members チャットのメンバーを一括変更.
      *
-     * @param int $roomId
      * @param array<int> $membersAdminIds
      * @param array<int> $membersMemberIds
      * @param array<int> $membersReadonlyIds
-     * @return PutMembers
      */
     public function putRoomMembers(
         int $roomId,
@@ -163,10 +154,8 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * GET /rooms/{room_id}/messages チャットのメッセージ一覧を取得。パラメータ未指定だと前回取得分からの差分のみを返します。(最大100件まで取得)
+     * GET /rooms/{room_id}/messages チャットのメッセージ一覧を取得。パラメータ未指定だと前回取得分からの差分のみを返します。(最大100件まで取得).
      *
-     * @param int $roomId
-     * @param bool $force
      * @return array<Message>
      */
     public function getRoomMessages(int $roomId, bool $force = false): array
@@ -180,9 +169,7 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * POST /rooms/{room_id}/messages チャットに新しいメッセージを追加
-     * @param int $roomId
-     * @return PostMessages
+     * POST /rooms/{room_id}/messages チャットに新しいメッセージを追加.
      */
     public function postRoomMessage(int $roomId): PostMessages
     {
@@ -190,38 +177,27 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * PUT /rooms/{room_id}/messages/readメッセージを既読にする
-     * @param int $roomId
-     * @param int $messageId
-     * @return PutMessage
+     * PUT /rooms/{room_id}/messages/readメッセージを既読にする.
      */
     public function putRoomMessageRead(int $roomId, int $messageId): PutMessage
     {
         return $this->messageFactory->putEntity($this->client->put("rooms/{$roomId}/messages/read", [
-            'message_id' => $messageId
+            'message_id' => $messageId,
         ]));
     }
 
     /**
-     * PUT /rooms/{room_id}/messages/unread メッセージを未読にする
-     *
-     * @param int $roomId
-     * @param int $messageId
-     * @return PutMessage
+     * PUT /rooms/{room_id}/messages/unread メッセージを未読にする.
      */
     public function putRoomMessageUnread(int $roomId, int $messageId): PutMessage
     {
         return $this->messageFactory->putEntity($this->client->put("rooms/{$roomId}/messages/unread", [
-            'message_id' => $messageId
+            'message_id' => $messageId,
         ]));
     }
 
     /**
-     * GET /rooms/{room_id}/messages/{message_id} メッセージ情報を取得
-     *
-     * @param int $roomId
-     * @param int $messageId
-     * @return Message
+     * GET /rooms/{room_id}/messages/{message_id} メッセージ情報を取得.
      */
     public function getRoomMessage(int $roomId, int $messageId): Message
     {
@@ -231,9 +207,6 @@ class RoomEndPoint extends AbstractEndPoint
     /**
      * PUT /rooms/{room_id}/messages/{message_id} チャットのメッセージを更新する。
      *
-     * @param int $roomId
-     * @param int $messageId
-     * @param string $body
      * @return int message_id
      */
     public function putRoomMessage(int $roomId, int $messageId, string $body): int
@@ -242,10 +215,7 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * DELETE /rooms/{room_id}/messages/{message_id} メッセージを削除
-     *
-     * @param int $roomId
-     * @param int $messageId
+     * DELETE /rooms/{room_id}/messages/{message_id} メッセージを削除.
      */
     public function deleteRoomMessage(int $roomId, int $messageId): void
     {
@@ -253,8 +223,8 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * GET /rooms/{room_id}/tasksチャットのタスク一覧を取得 (※100件まで取得可能。今後、より多くのデータを取得する為のページネーションの仕組みを提供予定)
-     * @param int $roomId
+     * GET /rooms/{room_id}/tasksチャットのタスク一覧を取得 (※100件まで取得可能。今後、より多くのデータを取得する為のページネーションの仕組みを提供予定).
+     *
      * @return array<Task>
      */
     public function getRoomTasks(int $roomId): array
@@ -268,13 +238,10 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * POST /rooms/{room_id}/tasksチャットに新しいタスクを追加
-     * @param int $roomId
-     * @param string $body
+     * POST /rooms/{room_id}/tasksチャットに新しいタスクを追加.
+     *
      * @param array<int> $toIds
-     * @param string $limit
-     * @param string $limitType [open, done]
-     * @return PostTask
+     * @param string     $limitType [open, done]
      */
     public function postRoomsTasks(int $roomId, string $body, array $toIds, string $limit = '', string $limitType = ''): PostTask
     {
@@ -282,15 +249,12 @@ class RoomEndPoint extends AbstractEndPoint
             'body' => $body,
             'limit' => $limit,
             'limit_type' => $limitType,
-            "toIds" => implode(',', $toIds)
+            'toIds' => implode(',', $toIds),
         ]));
     }
 
     /**
-     * GET /rooms/{room_id}/tasks/{task_id}タスク情報を取得
-     * @param int $roomId
-     * @param int $taskId
-     * @return Task
+     * GET /rooms/{room_id}/tasks/{task_id}タスク情報を取得.
      */
     public function getRoomTask(int $roomId, int $taskId): Task
     {
@@ -298,36 +262,33 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * PUT /rooms/{room_id}/tasks/{task_id}/statusタスク完了状態を変更する
-     * @param int $roomId
-     * @param int $taskId
+     * PUT /rooms/{room_id}/tasks/{task_id}/statusタスク完了状態を変更する.
+     *
      * @param string $body open, done
-     * @return int
      */
     public function putRoomTask(int $roomId, int $taskId, string $body): int
     {
         return $this->client->put("rooms/{$roomId}/tasks/{$taskId}/status", [
-            'body' => $body
+            'body' => $body,
         ])['task_id'];
     }
 
     /**
-     * GET /rooms/{room_id}/filesチャットのファイル一覧を取得 (※100件まで取得可能。今後、より多くのデータを取得する為のページネーションの仕組みを提供予定)
-     * @param int $roomId
-     * @param int $accountId
+     * GET /rooms/{room_id}/filesチャットのファイル一覧を取得 (※100件まで取得可能。今後、より多くのデータを取得する為のページネーションの仕組みを提供予定).
+     *
      * @return array<File>
      */
     public function getRoomFiles(int $roomId, int $accountId = 0): array
     {
         return $this->fileFactory->entities(
             $this->client->get("rooms/{$roomId}/files", [
-                'account_id' => $accountId !== 0 ? $accountId : 0
+                'account_id' => 0 !== $accountId ? $accountId : 0,
             ])
         );
     }
 
     /**
-     * POST /rooms/{room_id}/filesチャットに新しいファイルをアップロード
+     * POST /rooms/{room_id}/filesチャットに新しいファイルをアップロード.
      */
     public function postRoomFile()
     {
@@ -335,25 +296,19 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * GET /rooms/{room_id}/files/{file_id}ファイル情報を取得
-     * @param int $roomId
-     * @param int $fileId
-     * @param bool $createDownloadUrl
-     * @return File
+     * GET /rooms/{room_id}/files/{file_id}ファイル情報を取得.
      */
     public function getRoomFile(int $roomId, int $fileId, bool $createDownloadUrl = false): File
     {
         return $this->fileFactory->entity(
             $this->client->get("rooms/{$roomId}/files/{$fileId}", [
-                'create_download_url' => $createDownloadUrl === true ? 1 : 0
+                'create_download_url' => true === $createDownloadUrl ? 1 : 0,
             ])
         );
     }
 
     /**
-     * GET /rooms/{room_id}/link招待リンクを取得する
-     * @param int $roomId
-     * @return Link
+     * GET /rooms/{room_id}/link招待リンクを取得する.
      */
     public function getRoomLink(int $roomId): Link
     {
@@ -361,45 +316,31 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * POST /rooms/{room_id}/link招待リンクを作成する
-     * @param int $roomId
-     * @param string $code
-     * @param string $description
-     * @param bool $needAcceptance
-     * @return Link
+     * POST /rooms/{room_id}/link招待リンクを作成する.
      */
     public function postRoomLink(int $roomId, string $code = '', string $description = '', bool $needAcceptance = false): Link
     {
         return $this->linkFactory->entity($this->client->post("/rooms/{$roomId}/link", [
             'code' => $code,
             'description' => $description,
-            'need_acceptance' => $needAcceptance ? '1' : '0'
+            'need_acceptance' => $needAcceptance ? '1' : '0',
         ]));
     }
 
     /**
-     * PUT /rooms/{room_id}/link招待リンクの情報を変更する
-     * @param int $roomId
-     * @param string $code
-     * @param string $description
-     * @param bool $needAcceptance
-     * @return Link
+     * PUT /rooms/{room_id}/link招待リンクの情報を変更する.
      */
     public function putRoomLink(int $roomId, string $code = '', string $description = '', bool $needAcceptance = false): Link
     {
         return $this->linkFactory->entity($this->client->put("/rooms/{$roomId}/link", [
             'code' => $code,
             'description' => $description,
-            'need_acceptance' => $needAcceptance ? '1' : '0'
+            'need_acceptance' => $needAcceptance ? '1' : '0',
         ]));
     }
 
-    /**
-     * @param int $roomId
-     * @return bool
-     */
     public function deleteRoomLink(int $roomId): bool
     {
-        return $this->client->delete("rooms/{$roomId}/link")['public'] === 'true';
+        return 'true' === $this->client->delete("rooms/{$roomId}/link")['public'];
     }
 }

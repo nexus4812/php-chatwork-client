@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ChatWorkClient\Client;
 
 use GuzzleHttp\Client;
@@ -19,9 +18,6 @@ class GuzzleClient implements ClientInterface
     }
 
     /**
-     * @param string $path
-     * @param array $query
-     * @return array
      * @throws Exception\GuzzleException
      */
     public function get(string $path, array $query = []): array
@@ -30,9 +26,6 @@ class GuzzleClient implements ClientInterface
     }
 
     /**
-     * @param string $path
-     * @param array $data
-     * @return array
      * @throws Exception\GuzzleException
      */
     public function post(string $path, array $data = []): array
@@ -41,9 +34,6 @@ class GuzzleClient implements ClientInterface
     }
 
     /**
-     * @param string $path
-     * @param array $data
-     * @return array
      * @throws Exception\GuzzleException
      */
     public function put(string $path, array $data = []): array
@@ -52,9 +42,6 @@ class GuzzleClient implements ClientInterface
     }
 
     /**
-     * @param string $path
-     * @param array $query
-     * @return array
      * @throws Exception\GuzzleException
      */
     public function delete(string $path, array $query = []): array
@@ -62,8 +49,7 @@ class GuzzleClient implements ClientInterface
         return $this->jsonDecode($this->client->put($path, ['query' => $query])->getBody()->getContents());
     }
 
-
-    private function jsonDecode(string $json):array
+    private function jsonDecode(string $json): array
     {
         return json_decode($json, true);
     }

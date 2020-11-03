@@ -1,13 +1,12 @@
 <?php
 
-
 namespace ChatWorkClient\Api\EndPoints;
 
 use ChatWorkClient\Client\ClientInterface;
-use ChatWorkClient\Entities\Factories\StatusFactory;
 use ChatWorkClient\Entities\Factories\MyTaskFactory;
-use ChatWorkClient\Entities\Status;
+use ChatWorkClient\Entities\Factories\StatusFactory;
 use ChatWorkClient\Entities\MyTask;
+use ChatWorkClient\Entities\Status;
 use Tightenco\Collect\Support\Collection;
 
 class MyEndPoint extends AbstractEndPoint

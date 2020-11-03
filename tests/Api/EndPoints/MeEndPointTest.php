@@ -1,18 +1,14 @@
 <?php
 
-
 namespace ChatWorkClient\Api\EndPoints;
 
 use ChatWorkClient\Entities\Factories\MeFactory;
 use ChatWorkClient\Entities\Me;
 
-
 class MeEndPointTest extends AbstractEndPointForUnit
 {
-
     /**
      * @dataProvider providerResponseData
-     * @param array $apiResult
      */
     public function testGetMe(array $apiResult)
     {
@@ -45,8 +41,9 @@ class MeEndPointTest extends AbstractEndPointForUnit
                   "twitter": "mytwitter_id",
                   "avatar_image_url": "https://example.com/abc.png"
                 }', true);
+
         return [
-            [$data]
+            [$data],
         ];
     }
 }
