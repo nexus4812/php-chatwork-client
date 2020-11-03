@@ -35,7 +35,7 @@ class IncomingRequestsEndPointTest extends AbstractEndPointForUnit
 
     public function providerGetResponseData()
     {
-        $this->jsonDataToArray('[
+        return $this->jsonDataToArray('[
   {
     "request_id": 123,
     "account_id": 363,
@@ -52,7 +52,7 @@ class IncomingRequestsEndPointTest extends AbstractEndPointForUnit
 
     public function providerPutResponseData()
     {
-        $this->jsonDataToArray(
+        return $this->jsonDataToArray(
             '{
   "account_id": 363,
   "room_id": 1234,
