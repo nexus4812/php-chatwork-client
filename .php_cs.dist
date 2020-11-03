@@ -1,0 +1,15 @@
+<?php
+// .php_cs.dist
+namespace PhpCsFixer;
+
+return Config::create()
+    ->setRiskyAllowed(true)
+    ->setRules([
+        '@Symfony' => true,
+        '@Symfony:risky' => true,
+    ])
+    ->setFinder(
+        Finder::create()
+            ->exclude('resources')
+            ->in(__DIR__)
+    );
