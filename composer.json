@@ -24,13 +24,13 @@
 
   "autoload-dev": {
     "psr-4": {
-      "ChatWorkClient\\": "Test/"
+      "ChatWorkClient\\": "tests/"
     }
   },
 
   "scripts": {
     "test": "./vendor/bin/phpunit",
-    "cs": "./vendor/bin/php-cs-fixer fix ./App",
+    "cs": "./vendor/bin/php-cs-fixer fix ./App ",
     "phpstan": "vendor/bin/phpstan analyse -l 1 ./App"
   }
 }

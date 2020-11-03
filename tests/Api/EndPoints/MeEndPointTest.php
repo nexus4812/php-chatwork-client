@@ -7,7 +7,7 @@ use ChatWorkClient\Entities\Factories\MeFactory;
 use ChatWorkClient\Entities\Me;
 
 
-class TestMeEndPoint extends AbstractEndPointTest
+class MeEndPointTest extends AbstractEndPointForUnit
 {
 
     /**

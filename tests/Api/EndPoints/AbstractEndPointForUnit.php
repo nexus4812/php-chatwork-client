@@ -9,7 +9,7 @@ use ChatWorkClient\Client\ClientInterface;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 
-class AbstractEndPointTest extends TestCase
+class AbstractEndPointForUnit extends TestCase
 {
     use ProphecyTrait;
 

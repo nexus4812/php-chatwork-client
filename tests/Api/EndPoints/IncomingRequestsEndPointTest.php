@@ -6,7 +6,7 @@ namespace ChatWorkClient\Api\EndPoints;
 use ChatWorkClient\Entities\Factories\IncomingRequestFactory;
 use ChatWorkClient\Entities\IncomingRequest;
 
-class TestIncomingRequestsEndPoint extends AbstractEndPointTest
+class IncomingRequestsEndPointTest extends AbstractEndPointForUnit
 {
     /**
      * @dataProvider providerGetResponseData
@@ -18,6 +18,7 @@ class TestIncomingRequestsEndPoint extends AbstractEndPointTest
         $clientProphecy->get("incoming_requests")->willReturn($apiResult);
 
         $endPoint = new IncomingRequestsEndPoint($clientProphecy->reveal(), new IncomingRequestFactory());
+        $this->assertSame($endPoint->getIncomingRequests()[0]->request_id, $apiResult[0]['request_id']);
         $this->assertInstanceOf(IncomingRequest::class, $endPoint->getIncomingRequests()[0]);
     }
 

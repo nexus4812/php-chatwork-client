@@ -5,19 +5,9 @@ namespace ChatWorkClient\Api\EndPoints;
 
 use ChatWorkClient\Entities\Contacts;
 use ChatWorkClient\Entities\Factories\ContactsFactory;
-use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 
-use ChatWorkClient\Client\ClientInterface;
-
-class TestContactsEndPoint extends TestCase
+class ContactsEndPointTest extends AbstractEndPointForUnit
 {
-    use ProphecyTrait;
-
-    /**
-     * @var ClientInterface
-     */
-    private $client;
 
     /**
      * @dataProvider providerResponseData
@@ -25,17 +15,17 @@ class TestContactsEndPoint extends TestCase
      */
     public function testGetContacts(array $apiResult)
     {
-        $mock = $this->prophesize(ClientInterface::class);
-        $mock->get('contacts')->willReturn($apiResult);
-        $client = $mock->reveal();
-        $endPoint = new ContactsEndPoint($client, new ContactsFactory());
+        $clientProphecy= $this->createClientProphecy();
+        $clientProphecy->get('contacts')->willReturn($apiResult);
+
+        $endPoint = new ContactsEndPoint($clientProphecy->reveal(), new ContactsFactory());
         $this->assertSame($endPoint->getContacts()[0]->account_id, $apiResult[0]["account_id"]);
         $this->assertInstanceOf(Contacts::class, $endPoint->getContacts()[0]);
     }
 
-    public function providerResponseData()
+    public function providerResponseData(): array
     {
-        $data = json_decode('[
+        return $this->jsonDataToArray('[
   {
     "account_id": 123,
     "room_id": 322,
@@ -46,10 +36,6 @@ class TestContactsEndPoint extends TestCase
     "department": "Marketing",
     "avatar_image_url": "https://example.com/abc.png"
   }
-]', true);
-
-        return [
-            [$data]
-        ];
+]');
     }
 }
