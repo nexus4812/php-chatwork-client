@@ -9,6 +9,10 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class AbstractEndPointForUnit extends TestCase
 {
     use ProphecyTrait;

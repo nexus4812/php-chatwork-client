@@ -7,12 +7,16 @@ namespace ChatWorkClient\Entities\Factories;
 use ChatWorkClient\Entities\Contacts;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ContactsFactoryTest extends TestCase
 {
     /**
      * @dataProvider providerContactData
      */
-    public function testContactFactory(Contacts $contact)
+    public function testContactFactory(Contacts $contact): void
     {
         $this->assertInstanceOf(Contacts::class, $contact);
         $this->assertSame($contact->account_id, 123);

@@ -22,7 +22,7 @@ class TaskFactory extends AbstractEntityFactory implements EntityFactoryInterfac
     public function postEntity(array $data): PostTask
     {
         $r = new PostTask();
-        $r->task_ids = explode(',', $r->$data['task_ids']);
+        $r->task_ids = explode(',', $r->{$data}['task_ids']);
 
         return $r;
     }

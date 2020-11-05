@@ -7,6 +7,8 @@ return Config::create()
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
+        '@PHP71Migration:risky' => true,
+        '@PhpCsFixer' => true,
         'declare_strict_types' => true,
     ])
     ->setFinder(

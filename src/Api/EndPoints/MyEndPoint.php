@@ -47,7 +47,7 @@ class MyEndPoint extends AbstractEndPoint
     }
 
     /**
-     * @return Collection|array<MyTask>
+     * @return array<MyTask>|Collection
      */
     public function tasksAsCollection(): Collection
     {

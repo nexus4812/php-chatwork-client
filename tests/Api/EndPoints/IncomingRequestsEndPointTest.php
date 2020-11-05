@@ -7,6 +7,10 @@ namespace ChatWorkClient\Api\EndPoints;
 use ChatWorkClient\Entities\Factories\IncomingRequestFactory;
 use ChatWorkClient\Entities\IncomingRequest;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class IncomingRequestsEndPointTest extends AbstractEndPointForUnit
 {
     /**

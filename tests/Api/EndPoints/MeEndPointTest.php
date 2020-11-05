@@ -7,12 +7,16 @@ namespace ChatWorkClient\Api\EndPoints;
 use ChatWorkClient\Entities\Factories\MeFactory;
 use ChatWorkClient\Entities\Me;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class MeEndPointTest extends AbstractEndPointForUnit
 {
     /**
      * @dataProvider providerResponseData
      */
-    public function testGetMe(array $apiResult)
+    public function testGetMe(array $apiResult): void
     {
         $clientProphecy = $this->createClientProphecy();
         $clientProphecy->get('me')->willReturn($apiResult);

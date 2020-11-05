@@ -292,7 +292,7 @@ class RoomEndPoint extends AbstractEndPoint
     /**
      * POST /rooms/{room_id}/filesチャットに新しいファイルをアップロード.
      */
-    public function postRoomFile()
+    public function postRoomFile(): void
     {
         // TODO create
     }

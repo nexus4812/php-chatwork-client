@@ -9,23 +9,6 @@ use ChatWorkClient\Entities\EntityInterface;
 abstract class AbstractEntityFactory implements EntityFactoryInterface
 {
     /**
-     * @param $entity EntityInterface|mixed
-     * @param array<string> $columns
-     *
-     * @return EntityInterface | mixed
-     *
-     * (mixed is concrete EntityInterface)
-     */
-    protected function createEntity($entity, array $columns)
-    {
-        foreach ($columns as $key => $value) {
-            $entity->$key = $value;
-        }
-
-        return $entity;
-    }
-
-    /**
      * @param $data array<string,array<string>>
      *
      * @return array<EntityInterface,mixed> (mixed is concrete EntityInterface)
@@ -38,5 +21,22 @@ abstract class AbstractEntityFactory implements EntityFactoryInterface
         }
 
         return $r;
+    }
+
+    /**
+     * @param $entity EntityInterface|mixed
+     * @param array<string> $columns
+     *
+     * @return EntityInterface | mixed
+     *
+     * (mixed is concrete EntityInterface)
+     */
+    protected function createEntity($entity, array $columns)
+    {
+        foreach ($columns as $key => $value) {
+            $entity->{$key} = $value;
+        }
+
+        return $entity;
     }
 }
