@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ChatWorkClient\Api\EndPoints;
 
 use ChatWorkClient\Entities\Contacts;
