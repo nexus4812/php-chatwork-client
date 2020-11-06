@@ -6,7 +6,7 @@ namespace ChatWorkClient\Entities\Factories;
 
 use ChatWorkClient\Entities\AssignedByAccount;
 use ChatWorkClient\Entities\MyTask;
-use ChatWorkClient\Entities\Room;
+use ChatWorkClient\Entities\TinyRoom;
 
 class MyTaskFactory extends AbstractEntityFactory implements EntityFactoryInterface
 {
@@ -24,8 +24,8 @@ class MyTaskFactory extends AbstractEntityFactory implements EntityFactoryInterf
         return $this->createEntity(new AssignedByAccount(), $data);
     }
 
-    private function createRoomEntity(array $data): Room
+    private function createRoomEntity(array $data): TinyRoom
     {
-        return $this->createEntity(new Room(), $data);
+        return $this->createEntity(new TinyRoom(), $data);
     }
 }

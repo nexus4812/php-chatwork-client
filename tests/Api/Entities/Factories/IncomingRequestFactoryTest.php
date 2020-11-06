@@ -14,9 +14,9 @@ use PHPUnit\Framework\TestCase;
 class IncomingRequestFactoryTest extends TestCase
 {
     /**
-     * @dataProvider providerContactData
+     * @dataProvider providerEntity
      */
-    public function testContactFactory(IncomingRequest $contact): void
+    public function testFactory(IncomingRequest $contact): void
     {
         $this->assertInstanceOf(IncomingRequest::class, $contact);
         $this->assertSame($contact->request_id, 123);
@@ -30,7 +30,7 @@ class IncomingRequestFactoryTest extends TestCase
         $this->assertSame($contact->avatar_image_url, 'https://example.com/abc.png');
     }
 
-    public function providerContactData(): iterable
+    public function providerEntity(): iterable
     {
         $factory = new IncomingRequestFactory();
         $contact = json_decode('  {

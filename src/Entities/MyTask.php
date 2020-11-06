@@ -9,12 +9,12 @@ use Carbon\CarbonImmutable;
 class MyTask implements EntityInterface
 {
     /**
-     * @var string
+     * @var int
      */
     public $task_id;
 
     /**
-     * @var string
+     * @var TinyRoom
      */
     public $room;
 
@@ -34,7 +34,7 @@ class MyTask implements EntityInterface
     public $body;
 
     /**
-     * @var string
+     * @var int
      */
     public $limit_time;
 
@@ -44,7 +44,7 @@ class MyTask implements EntityInterface
     public $status;
 
     /**
-     * @var string
+     * @var int
      */
     public $limit_type;
 
