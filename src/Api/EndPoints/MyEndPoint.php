@@ -9,7 +9,7 @@ use ChatWorkClient\Entities\Factories\MyTaskFactory;
 use ChatWorkClient\Entities\Factories\StatusFactory;
 use ChatWorkClient\Entities\MyTask;
 use ChatWorkClient\Entities\Status;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class MyEndPoint extends AbstractEndPoint
 {

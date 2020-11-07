@@ -21,7 +21,7 @@ use ChatWorkClient\Entities\PutMembers;
 use ChatWorkClient\Entities\PutMessage;
 use ChatWorkClient\Entities\Room;
 use ChatWorkClient\Entities\Task;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class RoomEndPoint extends AbstractEndPoint
 {
@@ -162,7 +162,7 @@ class RoomEndPoint extends AbstractEndPoint
      */
     public function getRoomMessages(int $roomId, bool $force = false): array
     {
-        return $this->messageFactory->entities($this->client->get($roomId, ['force' => $force ? 1 : 0]));
+        return $this->messageFactory->entities($this->client->get("/rooms/{$roomId}/messages", ['force' => $force ? 1 : 0]));
     }
 
     public function getRoomMessagesAsCollection(int $roomId, bool $force = false): Collection

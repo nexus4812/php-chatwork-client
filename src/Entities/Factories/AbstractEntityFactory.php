@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ChatWorkClient\Entities\Factories;
 
 use ChatWorkClient\Entities\EntityInterface;
+use Illuminate\Support\Collection;
 
 abstract class AbstractEntityFactory implements EntityFactoryInterface
 {
@@ -38,5 +39,11 @@ abstract class AbstractEntityFactory implements EntityFactoryInterface
         }
 
         return $entity;
+    }
+
+
+    public function entitiesAsCollection(array $data): Collection
+    {
+        return new Collection($this->entities($data));
     }
 }

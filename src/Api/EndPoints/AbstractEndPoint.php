@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ChatWorkClient\Api\EndPoints;
 
 use ChatWorkClient\Client\ClientInterface;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 abstract class AbstractEndPoint
 {

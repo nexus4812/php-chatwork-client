@@ -55,5 +55,6 @@ final class ContactsFactoryTest extends TestCase
     "avatar_image_url": "https://example.com/abc.png"
   }]', true);
         yield [$factory->entities($contacts)[0]];
+        yield [$factory->entitiesAsCollection($contacts)->first()];
     }
 }
