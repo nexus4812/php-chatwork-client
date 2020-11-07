@@ -8,7 +8,7 @@ return Config::create()
         '@Symfony' => true,
         '@Symfony:risky' => true,
         '@PHP71Migration:risky' => true,
-        '@PhpCsFixer' => true,
+        '@PhpCsFixer:risky' => true,
         'declare_strict_types' => true,
     ])
     ->setFinder(

@@ -4,26 +4,31 @@ declare(strict_types=1);
 
 namespace ChatWorkClient\Api\EndPoints;
 
+use ChatWorkClient\Client\ClientInterface;
 use ChatWorkClient\Entities\Factories\IncomingRequestFactory;
 use ChatWorkClient\Entities\IncomingRequest;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @internal
  * @coversNothing
  */
-class IncomingRequestsEndPointTest extends AbstractEndPointForUnit
+final class IncomingRequestsEndPointTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @dataProvider providerGetResponseData
      */
     public function testGetIncomingRequests(array $apiResult): void
     {
-        $clientProphecy = $this->createClientProphecy();
+        $clientProphecy = $this->prophesize(ClientInterface::class);
         $clientProphecy->get('incoming_requests')->willReturn($apiResult);
 
         $endPoint = new IncomingRequestsEndPoint($clientProphecy->reveal(), new IncomingRequestFactory());
-        $this->assertSame($endPoint->getIncomingRequests()[0]->request_id, $apiResult[0]['request_id']);
-        $this->assertInstanceOf(IncomingRequest::class, $endPoint->getIncomingRequests()[0]);
+        static::assertSame($endPoint->getIncomingRequests()[0]->request_id, $apiResult[0]['request_id']);
+        static::assertInstanceOf(IncomingRequest::class, $endPoint->getIncomingRequests()[0]);
     }
 
     /**
@@ -32,16 +37,16 @@ class IncomingRequestsEndPointTest extends AbstractEndPointForUnit
     public function testPutIncomingRequests(array $apiResult): void
     {
         $requestId = 1;
-        $clientProphecy = $this->createClientProphecy();
+        $clientProphecy = $this->prophesize(ClientInterface::class);
         $clientProphecy->put("incoming_requests/{$requestId}")->willReturn($apiResult);
 
         $endPoint = new IncomingRequestsEndPoint($clientProphecy->reveal(), new IncomingRequestFactory());
-        $this->assertInstanceOf(IncomingRequest::class, $endPoint->putIncomingRequests($requestId));
+        static::assertInstanceOf(IncomingRequest::class, $endPoint->putIncomingRequests($requestId));
     }
 
     public function providerGetResponseData()
     {
-        return $this->jsonDataToArray('[
+        $r = json_decode('[
   {
     "request_id": 123,
     "account_id": 363,
@@ -53,12 +58,14 @@ class IncomingRequestsEndPointTest extends AbstractEndPointForUnit
     "department": "Marketing",
     "avatar_image_url": "https://example.com/abc.png"
   }
-]');
+]', true);
+
+        return [[$r]];
     }
 
     public function providerPutResponseData()
     {
-        return $this->jsonDataToArray(
+        $r = json_decode(
             '{
   "account_id": 363,
   "room_id": 1234,
@@ -67,7 +74,8 @@ class IncomingRequestsEndPointTest extends AbstractEndPointForUnit
   "organization_id": 101,
   "organization_name": "Hello Company",
   "department": "Marketing",
-  "avatar_image_url": "https://example.com/abc.png"}'
-        );
+  "avatar_image_url": "https://example.com/abc.png"}', true);
+
+        return [[$r]];
     }
 }

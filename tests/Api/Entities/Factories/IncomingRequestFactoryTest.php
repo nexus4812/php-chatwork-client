@@ -11,23 +11,23 @@ use PHPUnit\Framework\TestCase;
  * @internal
  * @coversNothing
  */
-class IncomingRequestFactoryTest extends TestCase
+final class IncomingRequestFactoryTest extends TestCase
 {
     /**
      * @dataProvider providerEntity
      */
     public function testFactory(IncomingRequest $contact): void
     {
-        $this->assertInstanceOf(IncomingRequest::class, $contact);
-        $this->assertSame($contact->request_id, 123);
-        $this->assertSame($contact->account_id, 363);
-        $this->assertSame($contact->message, 'hogehoge');
-        $this->assertSame($contact->name, 'John Smith');
-        $this->assertSame($contact->chatwork_id, 'tarochatworkid');
-        $this->assertSame($contact->organization_id, 101);
-        $this->assertSame($contact->organization_name, 'Hello Company');
-        $this->assertSame($contact->department, 'Marketing');
-        $this->assertSame($contact->avatar_image_url, 'https://example.com/abc.png');
+        static::assertInstanceOf(IncomingRequest::class, $contact);
+        static::assertSame($contact->request_id, 123);
+        static::assertSame($contact->account_id, 363);
+        static::assertSame($contact->message, 'hogehoge');
+        static::assertSame($contact->name, 'John Smith');
+        static::assertSame($contact->chatwork_id, 'tarochatworkid');
+        static::assertSame($contact->organization_id, 101);
+        static::assertSame($contact->organization_name, 'Hello Company');
+        static::assertSame($contact->department, 'Marketing');
+        static::assertSame($contact->avatar_image_url, 'https://example.com/abc.png');
     }
 
     public function providerEntity(): iterable

@@ -4,25 +4,30 @@ declare(strict_types=1);
 
 namespace ChatWorkClient\Api\EndPoints;
 
+use ChatWorkClient\Client\ClientInterface;
 use ChatWorkClient\Entities\Factories\MeFactory;
 use ChatWorkClient\Entities\Me;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @internal
  * @coversNothing
  */
-class MeEndPointTest extends AbstractEndPointForUnit
+final class MeEndPointTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @dataProvider providerResponseData
      */
     public function testGetMe(array $apiResult): void
     {
-        $clientProphecy = $this->createClientProphecy();
+        $clientProphecy = $this->prophesize(ClientInterface::class);
         $clientProphecy->get('me')->willReturn($apiResult);
 
         $endPoint = new MeEndPoint($clientProphecy->reveal(), new MeFactory());
-        $this->assertInstanceOf(Me::class, $endPoint->getMe());
+        static::assertInstanceOf(Me::class, $endPoint->getMe());
     }
 
     public function providerResponseData()
