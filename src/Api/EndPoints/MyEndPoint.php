@@ -39,18 +39,10 @@ class MyEndPoint extends AbstractEndPoint
     }
 
     /**
-     * @return array<MyTask>
-     */
-    public function getTasks(): array
-    {
-        return $this->taskFactory->entities($this->client->get('my/tasks'));
-    }
-
-    /**
      * @return array<MyTask>|Collection
      */
-    public function tasksAsCollection(): Collection
+    public function getTasks(): Collection
     {
-        return $this->arrayToCollection($this->getTasks());
+        return $this->taskFactory->entitiesAsCollection($this->client->get('my/tasks'));
     }
 }

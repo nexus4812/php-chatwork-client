@@ -33,7 +33,7 @@ final class IncomingRequestFactoryTest extends TestCase
     public function providerEntity(): iterable
     {
         $factory = new IncomingRequestFactory();
-        $contact = json_decode('  {
+        $request = json_decode('  {
     "request_id": 123,
     "account_id": 363,
     "message": "hogehoge",
@@ -44,9 +44,9 @@ final class IncomingRequestFactoryTest extends TestCase
     "department": "Marketing",
     "avatar_image_url": "https://example.com/abc.png"
   }', true);
-        yield [$factory->entity($contact)];
+        yield [$factory->entity($request)];
 
-        $contacts = json_decode('  [{
+        $requests = json_decode('  [{
     "request_id": 123,
     "account_id": 363,
     "message": "hogehoge",
@@ -57,6 +57,7 @@ final class IncomingRequestFactoryTest extends TestCase
     "department": "Marketing",
     "avatar_image_url": "https://example.com/abc.png"
   }]', true);
-        yield [$factory->entities($contacts)[0]];
+        yield [$factory->entities($requests)[0]];
+        yield [$factory->entitiesAsCollection($requests)->first()];
     }
 }

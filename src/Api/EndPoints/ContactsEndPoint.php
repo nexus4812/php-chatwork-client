@@ -7,6 +7,7 @@ namespace ChatWorkClient\Api\EndPoints;
 use ChatWorkClient\Client\ClientInterface;
 use ChatWorkClient\Entities\Contacts;
 use ChatWorkClient\Entities\Factories\ContactsFactory;
+use Illuminate\Support\Collection;
 
 class ContactsEndPoint extends AbstractEndPoint
 {
@@ -22,10 +23,10 @@ class ContactsEndPoint extends AbstractEndPoint
     }
 
     /**
-     * @return array<Contacts>
+     * @return array<Contacts>|Collection
      */
-    public function getContacts(): array
+    public function getContacts(): Collection
     {
-        return $this->factory->entities($this->client->get('contacts'));
+        return $this->factory->entitiesAsCollection($this->client->get('contacts'));
     }
 }

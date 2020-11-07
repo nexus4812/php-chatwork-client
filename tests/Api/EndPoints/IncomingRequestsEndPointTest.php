@@ -28,7 +28,7 @@ final class IncomingRequestsEndPointTest extends TestCase
 
         $endPoint = new IncomingRequestsEndPoint($clientProphecy->reveal(), new IncomingRequestFactory());
         static::assertSame($endPoint->getIncomingRequests()[0]->request_id, $apiResult[0]['request_id']);
-        static::assertInstanceOf(IncomingRequest::class, $endPoint->getIncomingRequests()[0]);
+        static::assertInstanceOf(IncomingRequest::class, $endPoint->getIncomingRequests()->first());
     }
 
     /**

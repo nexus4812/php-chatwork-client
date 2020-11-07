@@ -41,7 +41,6 @@ abstract class AbstractEntityFactory implements EntityFactoryInterface
         return $entity;
     }
 
-
     public function entitiesAsCollection(array $data): Collection
     {
         return new Collection($this->entities($data));
