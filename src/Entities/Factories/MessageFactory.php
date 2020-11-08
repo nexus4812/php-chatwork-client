@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Entities\Factories;
+namespace Nexus\ChatworkClient\Entities\Factories;
 
-use ChatWorkClient\Entities\Message;
-use ChatWorkClient\Entities\MessageAccount;
-use ChatWorkClient\Entities\PostMessages;
-use ChatWorkClient\Entities\PutMessage;
+use Nexus\ChatworkClient\Entities\Message;
+use Nexus\ChatworkClient\Entities\MessageAccount;
+use Nexus\ChatworkClient\Entities\PostMessages;
+use Nexus\ChatworkClient\Entities\PutMessage;
 
 class MessageFactory extends AbstractEntityFactory implements EntityFactoryInterface
 {

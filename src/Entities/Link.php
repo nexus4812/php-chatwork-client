@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Entities;
+namespace Nexus\ChatworkClient\Entities;
 
 class Link
 {

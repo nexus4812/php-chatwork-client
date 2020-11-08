@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Entities\Factories;
+namespace Nexus\ChatworkClient\Entities\Factories;
 
-use ChatWorkClient\Entities\Status;
+use Nexus\ChatworkClient\Entities\Status;
 
 class StatusFactory extends AbstractEntityFactory implements EntityFactoryInterface
 {

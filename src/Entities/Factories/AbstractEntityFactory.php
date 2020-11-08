@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Entities\Factories;
+namespace Nexus\ChatworkClient\Entities\Factories;
 
-use ChatWorkClient\Entities\EntityInterface;
 use Illuminate\Support\Collection;
+use Nexus\ChatworkClient\Entities\EntityInterface;
 
 abstract class AbstractEntityFactory implements EntityFactoryInterface
 {

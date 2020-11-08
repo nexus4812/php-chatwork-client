@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Entities\Factories;
+namespace Nexus\ChatworkClient\Entities\Factories;
 
-use ChatWorkClient\Entities\AssignedByAccount;
-use ChatWorkClient\Entities\PostTask;
-use ChatWorkClient\Entities\Task;
-use ChatWorkClient\Entities\TinyRoom;
+use Nexus\ChatworkClient\Entities\AssignedByAccount;
+use Nexus\ChatworkClient\Entities\PostTask;
+use Nexus\ChatworkClient\Entities\Task;
+use Nexus\ChatworkClient\Entities\TinyRoom;
 
 class TaskFactory extends AbstractEntityFactory implements EntityFactoryInterface
 {

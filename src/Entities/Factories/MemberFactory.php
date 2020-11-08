@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Entities\Factories;
+namespace Nexus\ChatworkClient\Entities\Factories;
 
-use ChatWorkClient\Entities\Member;
-use ChatWorkClient\Entities\PutMembers;
+use Nexus\ChatworkClient\Entities\Member;
+use Nexus\ChatworkClient\Entities\PutMembers;
 
 class MemberFactory extends AbstractEntityFactory implements EntityFactoryInterface
 {

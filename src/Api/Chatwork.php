@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Api;
+namespace Nexus\ChatworkClient\Api;
 
-use ChatWorkClient\Api\EndPoints\ContactsEndPoint;
-use ChatWorkClient\Api\EndPoints\IncomingRequestsEndPoint;
-use ChatWorkClient\Api\EndPoints\MeEndPoint;
-use ChatWorkClient\Api\EndPoints\MyEndPoint;
-use ChatWorkClient\Api\EndPoints\RoomEndPoint;
-use ChatWorkClient\Client\ClientFactory;
-use ChatWorkClient\Client\ClientInterface;
-use ChatWorkClient\Entities\Factories\ContactsFactory;
-use ChatWorkClient\Entities\Factories\EntityRoomFactory;
-use ChatWorkClient\Entities\Factories\FileFactory;
-use ChatWorkClient\Entities\Factories\IncomingRequestFactory;
-use ChatWorkClient\Entities\Factories\LinkFactory;
-use ChatWorkClient\Entities\Factories\MeFactory;
-use ChatWorkClient\Entities\Factories\MemberFactory;
-use ChatWorkClient\Entities\Factories\MessageFactory;
-use ChatWorkClient\Entities\Factories\MyTaskFactory;
-use ChatWorkClient\Entities\Factories\StatusFactory;
-use ChatWorkClient\Entities\Factories\TaskFactory;
+use Nexus\ChatworkClient\Api\EndPoints\ContactsEndPoint;
+use Nexus\ChatworkClient\Api\EndPoints\IncomingRequestsEndPoint;
+use Nexus\ChatworkClient\Api\EndPoints\MeEndPoint;
+use Nexus\ChatworkClient\Api\EndPoints\MyEndPoint;
+use Nexus\ChatworkClient\Api\EndPoints\RoomEndPoint;
+use Nexus\ChatworkClient\Client\ClientFactory;
+use Nexus\ChatworkClient\Client\ClientInterface;
+use Nexus\ChatworkClient\Entities\Factories\ContactsFactory;
+use Nexus\ChatworkClient\Entities\Factories\EntityRoomFactory;
+use Nexus\ChatworkClient\Entities\Factories\FileFactory;
+use Nexus\ChatworkClient\Entities\Factories\IncomingRequestFactory;
+use Nexus\ChatworkClient\Entities\Factories\LinkFactory;
+use Nexus\ChatworkClient\Entities\Factories\MeFactory;
+use Nexus\ChatworkClient\Entities\Factories\MemberFactory;
+use Nexus\ChatworkClient\Entities\Factories\MessageFactory;
+use Nexus\ChatworkClient\Entities\Factories\MyTaskFactory;
+use Nexus\ChatworkClient\Entities\Factories\StatusFactory;
+use Nexus\ChatworkClient\Entities\Factories\TaskFactory;
 
 class Chatwork
 {

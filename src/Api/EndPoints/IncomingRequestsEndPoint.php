@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Api\EndPoints;
+namespace Nexus\ChatworkClient\Api\EndPoints;
 
-use ChatWorkClient\Client\ClientInterface;
-use ChatWorkClient\Entities\Factories\IncomingRequestFactory;
-use ChatWorkClient\Entities\IncomingRequest;
 use Illuminate\Support\Collection;
+use Nexus\ChatworkClient\Client\ClientInterface;
+use Nexus\ChatworkClient\Entities\Factories\IncomingRequestFactory;
+use Nexus\ChatworkClient\Entities\IncomingRequest;
 
 class IncomingRequestsEndPoint extends AbstractEndPoint
 {

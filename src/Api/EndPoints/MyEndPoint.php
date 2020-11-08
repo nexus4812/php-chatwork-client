@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Api\EndPoints;
+namespace Nexus\ChatworkClient\Api\EndPoints;
 
-use ChatWorkClient\Client\ClientInterface;
-use ChatWorkClient\Entities\Factories\MyTaskFactory;
-use ChatWorkClient\Entities\Factories\StatusFactory;
-use ChatWorkClient\Entities\Status;
-use ChatWorkClient\Entities\Task;
 use Illuminate\Support\Collection;
+use Nexus\ChatworkClient\Client\ClientInterface;
+use Nexus\ChatworkClient\Entities\Factories\MyTaskFactory;
+use Nexus\ChatworkClient\Entities\Factories\StatusFactory;
+use Nexus\ChatworkClient\Entities\Status;
+use Nexus\ChatworkClient\Entities\Task;
 
 class MyEndPoint extends AbstractEndPoint
 {

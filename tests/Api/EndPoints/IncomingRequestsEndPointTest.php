@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Api\EndPoints;
+namespace Nexus\ChatworkClient\Api\EndPoints;
 
-use ChatWorkClient\Client\ClientInterface;
-use ChatWorkClient\Entities\Factories\IncomingRequestFactory;
-use ChatWorkClient\Entities\IncomingRequest;
+use Nexus\ChatworkClient\Client\ClientInterface;
+use Nexus\ChatworkClient\Entities\Factories\IncomingRequestFactory;
+use Nexus\ChatworkClient\Entities\IncomingRequest;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 

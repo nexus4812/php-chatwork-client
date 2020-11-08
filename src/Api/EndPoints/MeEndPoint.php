@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Api\EndPoints;
+namespace Nexus\ChatworkClient\Api\EndPoints;
 
-use ChatWorkClient\Client\ClientInterface;
-use ChatWorkClient\Entities\Factories\MeFactory;
-use ChatWorkClient\Entities\Me;
+use Nexus\ChatworkClient\Client\ClientInterface;
+use Nexus\ChatworkClient\Entities\Factories\MeFactory;
+use Nexus\ChatworkClient\Entities\Me;
 
 class MeEndPoint extends AbstractEndPoint
 {

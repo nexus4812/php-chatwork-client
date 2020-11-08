@@ -1,5 +1,5 @@
 {
-  "name": "nexus4812/php-chatwork-client",
+  "name": "nexus/php-chatwork-client",
 
   "require": {
     "php": ">=7.1.3",
@@ -18,13 +18,13 @@
 
   "autoload": {
     "psr-4": {
-      "ChatWorkClient\\": "src/"
+      "Nexus\\ChatworkClient\\": "src/"
     }
   },
 
   "autoload-dev": {
     "psr-4": {
-      "ChatWorkClient\\": "tests/"
+      "Nexus\\ChatworkClient\\": "tests/"
     }
   },
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Entities\Factories;
+namespace Nexus\ChatworkClient\Entities\Factories;
 
-use ChatWorkClient\Entities\IncomingRequest;
+use Nexus\ChatworkClient\Entities\IncomingRequest;
 
 class IncomingRequestFactory extends AbstractEntityFactory implements EntityFactoryInterface
 {

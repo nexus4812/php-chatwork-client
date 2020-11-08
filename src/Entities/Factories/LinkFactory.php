@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Entities\Factories;
+namespace Nexus\ChatworkClient\Entities\Factories;
 
-use ChatWorkClient\Entities\Link;
+use Nexus\ChatworkClient\Entities\Link;
 
 class LinkFactory extends AbstractEntityFactory implements EntityFactoryInterface
 {

@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Api\EndPoints;
+namespace Nexus\ChatworkClient\Api\EndPoints;
 
-use ChatWorkClient\Client\ClientInterface;
-use ChatWorkClient\Entities\EntityRoom;
-use ChatWorkClient\Entities\Factories\EntityRoomFactory;
-use ChatWorkClient\Entities\Factories\FileFactory;
-use ChatWorkClient\Entities\Factories\LinkFactory;
-use ChatWorkClient\Entities\Factories\MemberFactory;
-use ChatWorkClient\Entities\Factories\MessageFactory;
-use ChatWorkClient\Entities\Factories\TaskFactory;
-use ChatWorkClient\Entities\File;
-use ChatWorkClient\Entities\Link;
-use ChatWorkClient\Entities\Member;
-use ChatWorkClient\Entities\Message;
-use ChatWorkClient\Entities\PostMessages;
-use ChatWorkClient\Entities\PostTask;
-use ChatWorkClient\Entities\PutMembers;
-use ChatWorkClient\Entities\PutMessage;
-use ChatWorkClient\Entities\Task;
 use Illuminate\Support\Collection;
+use Nexus\ChatworkClient\Client\ClientInterface;
+use Nexus\ChatworkClient\Entities\EntityRoom;
+use Nexus\ChatworkClient\Entities\Factories\EntityRoomFactory;
+use Nexus\ChatworkClient\Entities\Factories\FileFactory;
+use Nexus\ChatworkClient\Entities\Factories\LinkFactory;
+use Nexus\ChatworkClient\Entities\Factories\MemberFactory;
+use Nexus\ChatworkClient\Entities\Factories\MessageFactory;
+use Nexus\ChatworkClient\Entities\Factories\TaskFactory;
+use Nexus\ChatworkClient\Entities\File;
+use Nexus\ChatworkClient\Entities\Link;
+use Nexus\ChatworkClient\Entities\Member;
+use Nexus\ChatworkClient\Entities\Message;
+use Nexus\ChatworkClient\Entities\PostMessages;
+use Nexus\ChatworkClient\Entities\PostTask;
+use Nexus\ChatworkClient\Entities\PutMembers;
+use Nexus\ChatworkClient\Entities\PutMessage;
+use Nexus\ChatworkClient\Entities\Task;
 
 class RoomEndPoint extends AbstractEndPoint
 {

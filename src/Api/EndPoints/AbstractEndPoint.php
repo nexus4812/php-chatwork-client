@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Api\EndPoints;
+namespace Nexus\ChatworkClient\Api\EndPoints;
 
-use ChatWorkClient\Client\ClientInterface;
 use Illuminate\Support\Collection;
+use Nexus\ChatworkClient\Client\ClientInterface;
 
 abstract class AbstractEndPoint
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Client;
+namespace Nexus\ChatworkClient\Client;
 
 use RuntimeException;
 

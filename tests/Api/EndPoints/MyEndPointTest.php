@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Api\EndPoints;
+namespace Nexus\ChatworkClient\Api\EndPoints;
 
-use ChatWorkClient\Client\ClientInterface;
-use ChatWorkClient\Entities\Factories\MyTaskFactory;
-use ChatWorkClient\Entities\Factories\StatusFactory;
-use ChatWorkClient\Entities\Status;
-use ChatWorkClient\Entities\Task;
+use Nexus\ChatworkClient\Client\ClientInterface;
+use Nexus\ChatworkClient\Entities\Factories\MyTaskFactory;
+use Nexus\ChatworkClient\Entities\Factories\StatusFactory;
+use Nexus\ChatworkClient\Entities\Status;
+use Nexus\ChatworkClient\Entities\Task;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
