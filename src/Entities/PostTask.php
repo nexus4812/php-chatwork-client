@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ChatWorkClient\Entities\Factories;
+namespace ChatWorkClient\Entities;
 
 class PostTask
 {

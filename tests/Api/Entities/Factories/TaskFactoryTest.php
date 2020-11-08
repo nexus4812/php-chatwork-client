@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ChatWorkClient\Entities\Factories;
 
 use ChatWorkClient\Entities\AssignedByAccount;
+use ChatWorkClient\Entities\PostTask;
 use ChatWorkClient\Entities\Task;
 use ChatWorkClient\Entities\TinyRoom;
 use PHPUnit\Framework\TestCase;
@@ -40,9 +41,35 @@ final class TaskFactoryTest extends TestCase
         static::assertSame($entity->limit_type, 'date');
     }
 
+    /**
+     * @dataProvider providerPostEntity
+     */
+    public function testPostEntity(PostTask $entity): void
+    {
+        static::assertInstanceOf(PostTask::class, $entity);
+
+        foreach ($entity->task_ids as $id) {
+            static::assertIsInt($id);
+        }
+
+        static::assertSame($entity->task_ids[0], 123);
+        static::assertSame($entity->task_ids[1], 124);
+    }
+
+    public function providerPostEntity(): iterable
+    {
+        $factory = new TaskFactory();
+        $r = json_decode('
+        {
+  "task_ids": [123,124]
+  }     ', true);
+
+        yield [$factory->postEntity($r)];
+    }
+
     public function providerEntity(): iterable
     {
-        $factory = new MyTaskFactory();
+        $factory = new TaskFactory();
         $r = json_decode('
           {
     "task_id": 3,
