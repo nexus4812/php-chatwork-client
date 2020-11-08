@@ -12,6 +12,7 @@ use ChatWorkClient\Api\EndPoints\RoomEndPoint;
 use ChatWorkClient\Client\ClientFactory;
 use ChatWorkClient\Client\ClientInterface;
 use ChatWorkClient\Entities\Factories\ContactsFactory;
+use ChatWorkClient\Entities\Factories\EntityRoomFactory;
 use ChatWorkClient\Entities\Factories\FileFactory;
 use ChatWorkClient\Entities\Factories\IncomingRequestFactory;
 use ChatWorkClient\Entities\Factories\LinkFactory;
@@ -19,7 +20,6 @@ use ChatWorkClient\Entities\Factories\MeFactory;
 use ChatWorkClient\Entities\Factories\MemberFactory;
 use ChatWorkClient\Entities\Factories\MessageFactory;
 use ChatWorkClient\Entities\Factories\MyTaskFactory;
-use ChatWorkClient\Entities\Factories\EntityRoomFactory;
 use ChatWorkClient\Entities\Factories\StatusFactory;
 use ChatWorkClient\Entities\Factories\TaskFactory;
 

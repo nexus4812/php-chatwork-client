@@ -36,7 +36,7 @@ final class EntityRoomFactoryTest extends TestCase
         static::assertSame($contact->last_update_time, 1298905200);
 
         /**
-         * エンドポイント GET /rooms ではこのプロパティは存在しない
+         * エンドポイント GET /rooms ではこのプロパティは存在しない.
          */
         static::assertSame($contact->description, 'room description text');
     }
