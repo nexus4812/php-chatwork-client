@@ -20,11 +20,14 @@ $chatwork = Nexus\ChatworkClient\Api\Chatwork::create('## Your API Token ##');
 ```
 
 
-自分の情報を取得する
+
+
+取得は結果`Nexus\ChatworkClient\Entities`で定義されたオブジェクトが返されます。
+
 ```php
+// 自分の情報を取得する
 $me = $chatwork->me()->getMe();
 
-// 結果は全てオブジェクトで返されます
 echo($me->room_id);             // 322
 echo($me->name);                // Nexus
 echo($me->avatar_image_url);    // https://example.com/abc.png
@@ -35,7 +38,7 @@ echo($me->avatar_image_url);    // https://example.com/abc.png
 ```php
 // タスク期限が明日のタスクを抽出する
 $tasks = $chatwork->my()->getTasks()->filter(function (Task $task) {
-    return $task->limitTime() === CarbonImmutable::tomorrow();
+    return $task->limitTime()->isNextDay();
 });
 
 $tasks->each(function (Task $task) {
