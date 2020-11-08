@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ChatWorkClient\Entities\Factories;
 
 use ChatWorkClient\Entities\AssignedByAccount;
-use ChatWorkClient\Entities\MyTask;
+use ChatWorkClient\Entities\Task;
 use ChatWorkClient\Entities\TinyRoom;
 use PHPUnit\Framework\TestCase;
 
@@ -13,14 +13,14 @@ use PHPUnit\Framework\TestCase;
  * @internal
  * @coversNothing
  */
-final class MyTaskFactoryTest extends TestCase
+final class TaskFactoryTest extends TestCase
 {
     /**
      * @dataProvider providerEntity
      */
-    public function testFactory(MyTask $entity): void
+    public function testFactory(Task $entity): void
     {
-        static::assertInstanceOf(MyTask::class, $entity);
+        static::assertInstanceOf(Task::class, $entity);
         static::assertSame($entity->task_id, 3);
 
         static::assertInstanceOf(TinyRoom::class, $entity->room);
@@ -86,5 +86,6 @@ final class MyTaskFactoryTest extends TestCase
   }
 ]', true);
         yield [$factory->entities($r)[0]];
+        yield [$factory->entitiesAsCollection($r)->first()];
     }
 }

@@ -31,6 +31,6 @@
   "scripts": {
     "test": "./vendor/bin/phpunit",
     "cs": "./vendor/bin/php-cs-fixer fix",
-    "phpstan": "vendor/bin/phpstan analyse -l 1 ./src"
+    "stan": "vendor/bin/phpstan analyse -l 1 ./src"
   }
 }

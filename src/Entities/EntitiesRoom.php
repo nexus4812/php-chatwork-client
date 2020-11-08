@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ChatWorkClient\Entities;
 
-class Room
+class EntitiesRoom
 {
     public $room_id;
     public $name;
@@ -19,5 +19,4 @@ class Room
     public $task_num;
     public $icon_path;
     public $last_update_time;
-    public $description;
 }

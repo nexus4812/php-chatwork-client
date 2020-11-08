@@ -7,8 +7,8 @@ namespace ChatWorkClient\Api\EndPoints;
 use ChatWorkClient\Client\ClientInterface;
 use ChatWorkClient\Entities\Factories\MyTaskFactory;
 use ChatWorkClient\Entities\Factories\StatusFactory;
-use ChatWorkClient\Entities\MyTask;
 use ChatWorkClient\Entities\Status;
+use ChatWorkClient\Entities\Task;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -41,7 +41,7 @@ final class MyEndPointTest extends TestCase
         $clientProphecy->get('my/tasks')->willReturn($data);
         $endPoint = new MyEndPoint($clientProphecy->reveal(), new StatusFactory(), new MyTaskFactory());
 
-        static::assertInstanceOf(MyTask::class, $endPoint->getTasks()->first());
+        static::assertInstanceOf(Task::class, $endPoint->getTasks()->first());
     }
 
     public function providerStateData()

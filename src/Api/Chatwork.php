@@ -19,7 +19,7 @@ use ChatWorkClient\Entities\Factories\MeFactory;
 use ChatWorkClient\Entities\Factories\MemberFactory;
 use ChatWorkClient\Entities\Factories\MessageFactory;
 use ChatWorkClient\Entities\Factories\MyTaskFactory;
-use ChatWorkClient\Entities\Factories\RoomFactory;
+use ChatWorkClient\Entities\Factories\EntityRoomFactory;
 use ChatWorkClient\Entities\Factories\StatusFactory;
 use ChatWorkClient\Entities\Factories\TaskFactory;
 
@@ -59,7 +59,7 @@ class Chatwork
     {
         return new RoomEndPoint(
             $this->client,
-            new RoomFactory(),
+            new EntityRoomFactory(),
             new MemberFactory(),
             new MessageFactory(),
             new TaskFactory(),

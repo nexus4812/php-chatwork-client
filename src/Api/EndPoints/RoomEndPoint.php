@@ -10,7 +10,7 @@ use ChatWorkClient\Entities\Factories\LinkFactory;
 use ChatWorkClient\Entities\Factories\MemberFactory;
 use ChatWorkClient\Entities\Factories\MessageFactory;
 use ChatWorkClient\Entities\Factories\PostTask;
-use ChatWorkClient\Entities\Factories\RoomFactory;
+use ChatWorkClient\Entities\Factories\EntityRoomFactory;
 use ChatWorkClient\Entities\Factories\TaskFactory;
 use ChatWorkClient\Entities\File;
 use ChatWorkClient\Entities\Link;
@@ -19,14 +19,14 @@ use ChatWorkClient\Entities\Message;
 use ChatWorkClient\Entities\PostMessages;
 use ChatWorkClient\Entities\PutMembers;
 use ChatWorkClient\Entities\PutMessage;
-use ChatWorkClient\Entities\Room;
+use ChatWorkClient\Entities\EntityRoom;
 use ChatWorkClient\Entities\Task;
 use Illuminate\Support\Collection;
 
 class RoomEndPoint extends AbstractEndPoint
 {
     /**
-     * @var RoomFactory
+     * @var EntityRoomFactory
      */
     private $roomFactory;
 
@@ -57,7 +57,7 @@ class RoomEndPoint extends AbstractEndPoint
 
     public function __construct(
         ClientInterface $client,
-        RoomFactory $roomFactory,
+        EntityRoomFactory $roomFactory,
         MemberFactory $memberFactory,
         MessageFactory $messageFactory,
         TaskFactory $taskFactory,
@@ -76,7 +76,7 @@ class RoomEndPoint extends AbstractEndPoint
     /**
      * GET /rooms 自分のチャット一覧の取得.
      *
-     * @return array<Room>
+     * @return array<EntityRoom>
      */
     public function getRooms(): array
     {
@@ -102,7 +102,7 @@ class RoomEndPoint extends AbstractEndPoint
     /**
      * GET /rooms/{room_id} チャットの名前、アイコン、種類(my/direct/group)を取得.
      */
-    public function getRoom(int $roomId): Room
+    public function getRoom(int $roomId): EntityRoom
     {
         return $this->roomFactory->entity($this->client->get("rooms/{$roomId}"));
     }

@@ -7,8 +7,8 @@ namespace ChatWorkClient\Api\EndPoints;
 use ChatWorkClient\Client\ClientInterface;
 use ChatWorkClient\Entities\Factories\MyTaskFactory;
 use ChatWorkClient\Entities\Factories\StatusFactory;
-use ChatWorkClient\Entities\MyTask;
 use ChatWorkClient\Entities\Status;
+use ChatWorkClient\Entities\Task;
 use Illuminate\Support\Collection;
 
 class MyEndPoint extends AbstractEndPoint
@@ -39,7 +39,7 @@ class MyEndPoint extends AbstractEndPoint
     }
 
     /**
-     * @return array<MyTask>|Collection
+     * @return array<Task>|Collection
      */
     public function getTasks(): Collection
     {

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace ChatWorkClient\Entities\Factories;
 
 use ChatWorkClient\Entities\AssignedByAccount;
-use ChatWorkClient\Entities\MyTask;
+use ChatWorkClient\Entities\Task;
 use ChatWorkClient\Entities\TinyRoom;
 
 class MyTaskFactory extends AbstractEntityFactory implements EntityFactoryInterface
 {
-    public function entity(array $task): MyTask
+    public function entity(array $task): Task
     {
-        $taskEntity = $this->createEntity(new MyTask(), $task);
+        $taskEntity = $this->createEntity(new Task(), $task);
         $taskEntity->assigned_by_account = $this->createAssignedByAccountEntity($task['assigned_by_account']);
         $taskEntity->room = $this->createRoomEntity($task['room']);
 
