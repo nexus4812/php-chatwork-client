@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Nexus\ChatworkClient\Api\EndPoints;
 
 use Nexus\ChatworkClient\Client\ClientInterface;
-use Nexus\ChatworkClient\Entities\Factories\MyTaskFactory;
-use Nexus\ChatworkClient\Entities\Factories\StatusFactory;
-use Nexus\ChatworkClient\Entities\Status;
+use Nexus\ChatworkClient\Entities\Factories\TaskFactory;
 use Nexus\ChatworkClient\Entities\Task;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -16,21 +14,9 @@ use Prophecy\PhpUnit\ProphecyTrait;
  * @internal
  * @coversNothing
  */
-final class MyEndPointTest extends TestCase
+final class MyTaskEndPointTest extends TestCase
 {
     use ProphecyTrait;
-
-    /**
-     * @dataProvider providerStateData
-     */
-    public function testGetState($data): void
-    {
-        $clientProphecy = $this->prophesize(ClientInterface::class);
-        $clientProphecy->get('my/status')->willReturn($data);
-
-        $endPoint = new MyEndPoint($clientProphecy->reveal(), new StatusFactory(), new MyTaskFactory());
-        static::assertInstanceOf(Status::class, $endPoint->getStatus());
-    }
 
     /**
      * @dataProvider providerGetTasks
@@ -39,25 +25,9 @@ final class MyEndPointTest extends TestCase
     {
         $clientProphecy = $this->prophesize(ClientInterface::class);
         $clientProphecy->get('my/tasks')->willReturn($data);
-        $endPoint = new MyEndPoint($clientProphecy->reveal(), new StatusFactory(), new MyTaskFactory());
+        $endPoint = new MyTaskEndPoint($clientProphecy->reveal(), new TaskFactory());
 
         static::assertInstanceOf(Task::class, $endPoint->getTasks()->first());
-    }
-
-    public function providerStateData()
-    {
-        $data = json_decode('{
-  "unread_room_num": 2,
-  "mention_room_num": 1,
-  "mytask_room_num": 3,
-  "unread_num": 12,
-  "mention_num": 1,
-  "mytask_num": 8
-}', true);
-
-        return [
-            [$data],
-        ];
     }
 
     public function providerGetTasks()

@@ -60,7 +60,7 @@ class RoomFileEndPoint extends AbstractEndPoint
     {
         return $this->fileFactory->entity(
             $this->client->get("rooms/{$this->roomId}/files/{$fileId}", [
-                'create_download_url' => true === $createDownloadUrl ? 1 : 0,
+                'create_download_url' => $createDownloadUrl ? 1 : 0,
             ])
         );
     }

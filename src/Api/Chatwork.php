@@ -7,7 +7,8 @@ namespace Nexus\ChatworkClient\Api;
 use Nexus\ChatworkClient\Api\EndPoints\ContactsEndPoint;
 use Nexus\ChatworkClient\Api\EndPoints\IncomingRequestsEndPoint;
 use Nexus\ChatworkClient\Api\EndPoints\MeEndPoint;
-use Nexus\ChatworkClient\Api\EndPoints\MyEndPoint;
+use Nexus\ChatworkClient\Api\EndPoints\MyStatusEndPoint;
+use Nexus\ChatworkClient\Api\EndPoints\MyTaskEndPoint;
 use Nexus\ChatworkClient\Api\EndPoints\RoomEndPoint;
 use Nexus\ChatworkClient\Api\EndPoints\RoomFileEndPoint;
 use Nexus\ChatworkClient\Api\EndPoints\RoomLinkEndPoint;
@@ -24,7 +25,6 @@ use Nexus\ChatworkClient\Entities\Factories\LinkFactory;
 use Nexus\ChatworkClient\Entities\Factories\MeFactory;
 use Nexus\ChatworkClient\Entities\Factories\MemberFactory;
 use Nexus\ChatworkClient\Entities\Factories\MessageFactory;
-use Nexus\ChatworkClient\Entities\Factories\MyTaskFactory;
 use Nexus\ChatworkClient\Entities\Factories\StatusFactory;
 use Nexus\ChatworkClient\Entities\Factories\TaskFactory;
 
@@ -50,9 +50,14 @@ class Chatwork
         return new MeEndPoint($this->client, new MeFactory());
     }
 
-    public function my(): MyEndPoint
+    public function myTask(): MyTaskEndPoint
     {
-        return new MyEndPoint($this->client, new StatusFactory(), new MyTaskFactory());
+        return new MyTaskEndPoint($this->client, new TaskFactory());
+    }
+
+    public function myStatus(): MyStatusEndPoint
+    {
+        return new MyStatusEndPoint($this->client, new StatusFactory());
     }
 
     public function contacts(): ContactsEndPoint
