@@ -7,32 +7,32 @@ namespace Nexus\ChatworkClient\Entities;
 class Status implements EntityInterface
 {
     /**
-     * @var string
+     * @var int
      */
     public $unread_room_num;
 
     /**
-     * @var string
+     * @var int
      */
     public $mention_room_num;
 
     /**
-     * @var string
+     * @var int
      */
     public $mytask_room_num;
 
     /**
-     * @var string
+     * @var int
      */
     public $unread_num;
 
     /**
-     * @var string
+     * @var int
      */
     public $mention_num;
 
     /**
-     * @var string
+     * @var int
      */
     public $mytask_num;
 }
