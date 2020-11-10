@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities;
 
+use Carbon\CarbonImmutable;
+
 class Message implements EntityInterface
 {
     /**
@@ -30,4 +32,14 @@ class Message implements EntityInterface
      * @var int
      */
     public $update_time;
+
+    public function sendTime(): CarbonImmutable
+    {
+        return CarbonImmutable::createFromTimestamp($this->send_time);
+    }
+
+    public function updateTime(): CarbonImmutable
+    {
+        return CarbonImmutable::createFromTimestamp($this->update_time);
+    }
 }
