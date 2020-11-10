@@ -7,17 +7,17 @@ namespace Nexus\ChatworkClient\Entities;
 class PutMembers implements EntityInterface
 {
     /**
-     * @var array<int>
+     * @var array<int> Admin user ids
      */
-    public $members_admin_ids;
+    public $admin;
 
     /**
-     * @var array<int>
+     * @var array<int> Member user ids
      */
-    public $members_member_ids;
+    public $member;
 
     /**
-     * @var array<int>
+     * @var array<int> Read only user ids
      */
-    public $members_readonly_ids;
+    public $readonly;
 }
