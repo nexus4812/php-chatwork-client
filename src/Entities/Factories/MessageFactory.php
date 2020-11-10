@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities\Factories;
 
+use Nexus\ChatworkClient\Entities\Account;
 use Nexus\ChatworkClient\Entities\Message;
-use Nexus\ChatworkClient\Entities\MessageAccount;
 use Nexus\ChatworkClient\Entities\PostMessages;
 use Nexus\ChatworkClient\Entities\PutMessage;
 
@@ -14,7 +14,7 @@ class MessageFactory extends AbstractEntityFactory implements EntityFactoryInter
     public function entity(array $data): Message
     {
         $message = $this->createEntity(new Message(), $data);
-        $message->account = $this->createEntity(new MessageAccount(), $data['account']);
+        $message->account = $this->createEntity(new Account(), $data['account']);
 
         return $message;
     }
