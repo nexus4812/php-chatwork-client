@@ -18,13 +18,13 @@ use Nexus\ChatworkClient\Api\EndPoints\RoomTaskEndPoint;
 use Nexus\ChatworkClient\Client\ClientFactory;
 use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\ContactsFactory;
-use Nexus\ChatworkClient\Entities\Factories\EntityRoomFactory;
 use Nexus\ChatworkClient\Entities\Factories\FileFactory;
 use Nexus\ChatworkClient\Entities\Factories\IncomingRequestFactory;
 use Nexus\ChatworkClient\Entities\Factories\LinkFactory;
 use Nexus\ChatworkClient\Entities\Factories\MeFactory;
 use Nexus\ChatworkClient\Entities\Factories\MemberFactory;
 use Nexus\ChatworkClient\Entities\Factories\MessageFactory;
+use Nexus\ChatworkClient\Entities\Factories\RoomFactory;
 use Nexus\ChatworkClient\Entities\Factories\StatusFactory;
 use Nexus\ChatworkClient\Entities\Factories\TaskFactory;
 
@@ -67,7 +67,7 @@ class Chatwork
 
     public function room(): RoomEndPoint
     {
-        return new RoomEndPoint($this->client, new EntityRoomFactory());
+        return new RoomEndPoint($this->client, new RoomFactory());
     }
 
     public function roomFile(int $roomId): RoomFileEndPoint

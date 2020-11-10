@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace Nexus\ChatworkClient\Api\EndPoints;
 
 use Nexus\ChatworkClient\Client\ClientInterface;
-use Nexus\ChatworkClient\Entities\EntityRoom;
-use Nexus\ChatworkClient\Entities\Factories\EntityRoomFactory;
+use Nexus\ChatworkClient\Entities\Factories\RoomFactory;
+use Nexus\ChatworkClient\Entities\Room;
 
 class RoomEndPoint extends AbstractEndPoint
 {
     /**
-     * @var EntityRoomFactory
+     * @var RoomFactory
      */
     private $roomFactory;
 
     public function __construct(
         ClientInterface $client,
-        EntityRoomFactory $roomFactory
+        RoomFactory $roomFactory
     ) {
         parent::__construct($client);
         $this->roomFactory = $roomFactory;
@@ -26,7 +26,7 @@ class RoomEndPoint extends AbstractEndPoint
     /**
      * GET /rooms 自分のチャット一覧の取得.
      *
-     * @return array<EntityRoom>
+     * @return array<Room>
      */
     public function getRooms(): array
     {
@@ -52,7 +52,7 @@ class RoomEndPoint extends AbstractEndPoint
     /**
      * GET /rooms/{room_id} チャットの名前、アイコン、種類(my/direct/group)を取得.
      */
-    public function getRoom(int $roomId): EntityRoom
+    public function getRoom(int $roomId): Room
     {
         return $this->roomFactory->entity($this->client->get("rooms/{$roomId}"));
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities;
 
-class EntitiesRoom
+class Room
 {
     public $room_id;
     public $name;
@@ -19,4 +19,9 @@ class EntitiesRoom
     public $task_num;
     public $icon_path;
     public $last_update_time;
+
+    /**
+     * @var string Only GET /rooms/{room_id}
+     */
+    public $description;
 }
