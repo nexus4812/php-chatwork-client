@@ -7,12 +7,12 @@ namespace Nexus\ChatworkClient\Entities;
 class Me implements EntityInterface
 {
     /**
-     * @var string
+     * @var int
      */
     public $account_id;
 
     /**
-     * @var string
+     * @var int
      */
     public $room_id;
 
@@ -27,7 +27,7 @@ class Me implements EntityInterface
     public $chatwork_id;
 
     /**
-     * @var string
+     * @var int
      */
     public $organization_id;
 
