@@ -15,17 +15,16 @@ class RoomMemberEndPoint extends AbstractEndPoint
     /**
      * @var MemberFactory
      */
-    private $memberFactory;
+    protected $factory;
 
+    /**
+     * @var int
+     */
     private $roomId;
 
-    public function __construct(
-        ClientInterface $client,
-        MemberFactory $memberFactory,
-        int $roomId
-    ) {
-        parent::__construct($client);
-        $this->memberFactory = $memberFactory;
+    public function __construct(ClientInterface $client, MemberFactory $factory, int $roomId)
+    {
+        parent::__construct($client, $factory);
         $this->roomId = $roomId;
     }
 
@@ -36,7 +35,7 @@ class RoomMemberEndPoint extends AbstractEndPoint
      */
     public function getRoomMembers(): Collection
     {
-        return $this->memberFactory->entitiesAsCollection($this->client->get("room/{$this->roomId}/members"));
+        return $this->factory->entitiesAsCollection($this->client->get("room/{$this->roomId}/members"));
     }
 
     /**
@@ -51,7 +50,7 @@ class RoomMemberEndPoint extends AbstractEndPoint
         array $membersMemberIds = [],
         array $membersReadonlyIds = []
     ): PutMembers {
-        return $this->memberFactory->putEntity($this->client->put("rooms/{$this->roomId}/members", [
+        return $this->factory->putEntity($this->client->put("rooms/{$this->roomId}/members", [
             'members_admin_ids' => $membersAdminIds,
             'members_member_ids' => $membersMemberIds,
             'members_readonly_ids' => $membersReadonlyIds,

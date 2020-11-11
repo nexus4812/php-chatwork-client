@@ -13,18 +13,15 @@ class MyStatusEndPoint extends AbstractEndPoint
     /**
      * @var StatusFactory
      */
-    private $statusFactory;
+    protected $factory;
 
-    public function __construct(
-        ClientInterface $client,
-        StatusFactory $factory
-    ) {
-        parent::__construct($client);
-        $this->statusFactory = $factory;
+    public function __construct(ClientInterface $client, StatusFactory $factory)
+    {
+        parent::__construct($client, $factory);
     }
 
     public function getStatus(): Status
     {
-        return $this->statusFactory->entity($this->client->get('my/status'));
+        return $this->factory->entity($this->client->get('my/status'));
     }
 }

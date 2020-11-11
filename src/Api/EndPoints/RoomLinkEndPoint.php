@@ -13,17 +13,16 @@ class RoomLinkEndPoint extends AbstractEndPoint
     /**
      * @var LinkFactory
      */
-    private $linkFactory;
+    protected $factory;
 
+    /**
+     * @var int
+     */
     private $roomId;
 
-    public function __construct(
-        ClientInterface $client,
-        LinkFactory $linkFactory,
-        int $roomId
-    ) {
-        parent::__construct($client);
-        $this->linkFactory = $linkFactory;
+    public function __construct(ClientInterface $client, LinkFactory $factory, int $roomId)
+    {
+        parent::__construct($client, $factory);
         $this->roomId = $roomId;
     }
 
@@ -32,7 +31,7 @@ class RoomLinkEndPoint extends AbstractEndPoint
      */
     public function getRoomLink(): Link
     {
-        return $this->linkFactory->entity($this->client->post("rooms/{$this->roomId}/link"));
+        return $this->factory->entity($this->client->post("rooms/{$this->roomId}/link"));
     }
 
     /**
@@ -40,7 +39,7 @@ class RoomLinkEndPoint extends AbstractEndPoint
      */
     public function postRoomLink(string $code = '', string $description = '', bool $needAcceptance = false): Link
     {
-        return $this->linkFactory->entity($this->client->post("/rooms/{$this->roomId}/link", [
+        return $this->factory->entity($this->client->post("/rooms/{$this->roomId}/link", [
             'code' => $code,
             'description' => $description,
             'need_acceptance' => $needAcceptance ? '1' : '0',
@@ -52,7 +51,7 @@ class RoomLinkEndPoint extends AbstractEndPoint
      */
     public function putRoomLink(string $code = '', string $description = '', bool $needAcceptance = false): Link
     {
-        return $this->linkFactory->entity($this->client->put("/rooms/{$this->roomId}/link", [
+        return $this->factory->entity($this->client->put("/rooms/{$this->roomId}/link", [
             'code' => $code,
             'description' => $description,
             'need_acceptance' => $needAcceptance ? '1' : '0',

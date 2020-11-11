@@ -14,20 +14,16 @@ class RoomFileEndPoint extends AbstractEndPoint
     /**
      * @var FileFactory
      */
-    private $fileFactory;
+    protected $factory;
 
     /**
      * @var int
      */
     private $roomId;
 
-    public function __construct(
-        ClientInterface $client,
-        FileFactory $roomFactory,
-        int $roomId
-    ) {
-        parent::__construct($client);
-        $this->fileFactory = $roomFactory;
+    public function __construct(ClientInterface $client, FileFactory $factory, int $roomId)
+    {
+        parent::__construct($client, $factory);
         $this->roomId = $roomId;
     }
 
@@ -38,7 +34,7 @@ class RoomFileEndPoint extends AbstractEndPoint
      */
     public function getRoomFiles(int $accountId = 0): Collection
     {
-        return $this->fileFactory->entitiesAsCollection(
+        return $this->factory->entitiesAsCollection(
             $this->client->get("rooms/{$this->roomId}/files", [
                 'account_id' => 0 !== $accountId ? $accountId : 0,
             ])
@@ -58,7 +54,7 @@ class RoomFileEndPoint extends AbstractEndPoint
      */
     public function getRoomFile(int $fileId, bool $createDownloadUrl = false): File
     {
-        return $this->fileFactory->entity(
+        return $this->factory->entity(
             $this->client->get("rooms/{$this->roomId}/files/{$fileId}", [
                 'create_download_url' => $createDownloadUrl ? 1 : 0,
             ])

@@ -6,6 +6,7 @@ namespace Nexus\ChatworkClient\Api\EndPoints;
 
 use Illuminate\Support\Collection;
 use Nexus\ChatworkClient\Client\ClientInterface;
+use Nexus\ChatworkClient\Entities\Factories\EntityFactoryInterface;
 
 abstract class AbstractEndPoint
 {
@@ -14,9 +15,15 @@ abstract class AbstractEndPoint
      */
     protected $client;
 
-    public function __construct(ClientInterface $client)
+    /**
+     * @var EntityFactoryInterface
+     */
+    protected $factory;
+
+    public function __construct(ClientInterface $client, EntityFactoryInterface $factory)
     {
         $this->client = $client;
+        $this->factory = $factory;
     }
 
     protected function arrayToCollection(array $array): Collection

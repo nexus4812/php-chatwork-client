@@ -14,12 +14,11 @@ class IncomingRequestsEndPoint extends AbstractEndPoint
     /**
      * @var IncomingRequestFactory
      */
-    private $incomingRequestFactory;
+    protected $factory;
 
-    public function __construct(ClientInterface $client, IncomingRequestFactory $incomingRequestFactory)
+    public function __construct(ClientInterface $client, IncomingRequestFactory $factory)
     {
-        parent::__construct($client);
-        $this->incomingRequestFactory = $incomingRequestFactory;
+        parent::__construct($client, $factory);
     }
 
     /**
@@ -29,7 +28,7 @@ class IncomingRequestsEndPoint extends AbstractEndPoint
      */
     public function getIncomingRequests(): Collection
     {
-        return $this->incomingRequestFactory->entitiesAsCollection($this->client->get('incoming_requests'));
+        return $this->factory->entitiesAsCollection($this->client->get('incoming_requests'));
     }
 
     /**
@@ -37,7 +36,7 @@ class IncomingRequestsEndPoint extends AbstractEndPoint
      */
     public function putIncomingRequests(int $requestId): IncomingRequest
     {
-        return $this->incomingRequestFactory->entity($this->client->put("incoming_requests/{$requestId}"));
+        return $this->factory->entity($this->client->put("incoming_requests/{$requestId}"));
     }
 
     /**

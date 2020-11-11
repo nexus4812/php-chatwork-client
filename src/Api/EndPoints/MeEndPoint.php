@@ -13,12 +13,11 @@ class MeEndPoint extends AbstractEndPoint
     /**
      * @var MeFactory
      */
-    private $factory;
+    protected $factory;
 
     public function __construct(ClientInterface $client, MeFactory $factory)
     {
-        parent::__construct($client);
-        $this->factory = $factory;
+        parent::__construct($client, $factory);
     }
 
     public function getMe(): Me

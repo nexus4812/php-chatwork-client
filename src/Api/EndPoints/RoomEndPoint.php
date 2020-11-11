@@ -13,14 +13,11 @@ class RoomEndPoint extends AbstractEndPoint
     /**
      * @var RoomFactory
      */
-    private $roomFactory;
+    protected $factory;
 
-    public function __construct(
-        ClientInterface $client,
-        RoomFactory $roomFactory
-    ) {
-        parent::__construct($client);
-        $this->roomFactory = $roomFactory;
+    public function __construct(ClientInterface $client, RoomFactory $factory)
+    {
+        parent::__construct($client, $factory);
     }
 
     /**
@@ -30,7 +27,7 @@ class RoomEndPoint extends AbstractEndPoint
      */
     public function getRooms(): array
     {
-        return $this->roomFactory->entities($this->client->get('rooms'));
+        return $this->factory->entities($this->client->get('rooms'));
     }
 
     /**
@@ -43,7 +40,7 @@ class RoomEndPoint extends AbstractEndPoint
      */
     public function postRoom(array $membersAdminIds, string $name, $options = []): int
     {
-        return $this->client->post('/rooms', array_merge([
+        return $this->client->post('rooms', array_merge([
             'members_admin_ids' => $membersAdminIds,
             'name' => $name,
         ], $options))['room_id'];
@@ -54,7 +51,7 @@ class RoomEndPoint extends AbstractEndPoint
      */
     public function getRoom(int $roomId): Room
     {
-        return $this->roomFactory->entity($this->client->get("rooms/{$roomId}"));
+        return $this->factory->entity($this->client->get("rooms/{$roomId}"));
     }
 
     /**
@@ -64,7 +61,7 @@ class RoomEndPoint extends AbstractEndPoint
      */
     public function putRoom(int $roomId, $option = []): int
     {
-        return $this->roomFactory->entity($this->client->put("rooms/{$roomId}", $option))->room_id;
+        return $this->factory->entity($this->client->put("rooms/{$roomId}", $option))->room_id;
     }
 
     /**

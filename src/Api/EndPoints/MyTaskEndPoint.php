@@ -14,14 +14,11 @@ class MyTaskEndPoint extends AbstractEndPoint
     /**
      * @var TaskFactory
      */
-    private $taskFactory;
+    protected $factory;
 
-    public function __construct(
-        ClientInterface $client,
-        TaskFactory $taskFactory
-    ) {
-        parent::__construct($client);
-        $this->taskFactory = $taskFactory;
+    public function __construct(ClientInterface $client, TaskFactory $factory)
+    {
+        parent::__construct($client, $factory);
     }
 
     /**
@@ -29,6 +26,6 @@ class MyTaskEndPoint extends AbstractEndPoint
      */
     public function getTasks(): Collection
     {
-        return $this->taskFactory->entitiesAsCollection($this->client->get('my/tasks'));
+        return $this->factory->entitiesAsCollection($this->client->get('my/tasks'));
     }
 }

@@ -15,20 +15,16 @@ class RoomTaskEndPoint extends AbstractEndPoint
     /**
      * @var TaskFactory
      */
-    private $taskFactory;
+    protected $taskFactory;
 
     /**
      * @var int
      */
     private $roomId;
 
-    public function __construct(
-        ClientInterface $client,
-        TaskFactory $taskFactory,
-        int $roomId
-    ) {
-        parent::__construct($client);
-        $this->taskFactory = $taskFactory;
+    public function __construct(ClientInterface $client, TaskFactory $factory, int $roomId)
+    {
+        parent::__construct($client, $factory);
         $this->roomId = $roomId;
     }
 

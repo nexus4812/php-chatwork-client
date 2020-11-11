@@ -16,20 +16,16 @@ class RoomMessageEndPoint extends AbstractEndPoint
     /**
      * @var MessageFactory
      */
-    private $messageFactory;
+    protected $factory;
 
     /**
      * @var int
      */
     private $roomId;
 
-    public function __construct(
-        ClientInterface $client,
-        MessageFactory $messageFactory,
-        int $roomId
-    ) {
-        parent::__construct($client);
-        $this->messageFactory = $messageFactory;
+    public function __construct(ClientInterface $client, MessageFactory $factory, int $roomId)
+    {
+        parent::__construct($client, $factory);
         $this->roomId = $roomId;
     }
 
@@ -40,7 +36,7 @@ class RoomMessageEndPoint extends AbstractEndPoint
      */
     public function getRoomMessages(bool $force = false): Collection
     {
-        return $this->messageFactory->entitiesAsCollection(
+        return $this->factory->entitiesAsCollection(
             $this->client->get("/rooms/{$this->roomId}/messages", ['force' => $force ? 1 : 0])
         );
     }
@@ -50,7 +46,7 @@ class RoomMessageEndPoint extends AbstractEndPoint
      */
     public function postRoomMessage(): PostMessages
     {
-        return $this->messageFactory->postEntity(
+        return $this->factory->postEntity(
             $this->client->post("rooms/{$this->roomId}/messages")
         )->messageId;
     }
@@ -60,7 +56,7 @@ class RoomMessageEndPoint extends AbstractEndPoint
      */
     public function putRoomMessageRead(int $messageId): PutMessage
     {
-        return $this->messageFactory->putEntity(
+        return $this->factory->putEntity(
             $this->client->put("rooms/{$this->roomId}/messages/read", ['message_id' => $messageId])
         );
     }
@@ -70,7 +66,7 @@ class RoomMessageEndPoint extends AbstractEndPoint
      */
     public function putRoomMessageUnread(int $messageId): PutMessage
     {
-        return $this->messageFactory->putEntity(
+        return $this->factory->putEntity(
             $this->client->put("rooms/{$this->roomId}/messages/unread", ['message_id' => $messageId])
         );
     }
@@ -80,7 +76,7 @@ class RoomMessageEndPoint extends AbstractEndPoint
      */
     public function getRoomMessage(int $messageId): Message
     {
-        return $this->messageFactory->entity($this->client->get("rooms/{$this->roomId}/messages/{$messageId}"));
+        return $this->factory->entity($this->client->get("rooms/{$this->roomId}/messages/{$messageId}"));
     }
 
     /**

@@ -14,12 +14,11 @@ class ContactsEndPoint extends AbstractEndPoint
     /**
      * @var ContactsFactory
      */
-    private $factory;
+    protected $factory;
 
     public function __construct(ClientInterface $client, ContactsFactory $factory)
     {
-        parent::__construct($client);
-        $this->factory = $factory;
+        parent::__construct($client, $factory);
     }
 
     /**
