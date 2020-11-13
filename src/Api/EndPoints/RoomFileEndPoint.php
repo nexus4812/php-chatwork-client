@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\FileFactory;
 use Nexus\ChatworkClient\Entities\File;
+use Nexus\ChatworkClient\Request\Multipart\GuzzleMultipartRequest;
 
 class RoomFileEndPoint extends AbstractEndPoint
 {
@@ -44,9 +45,13 @@ class RoomFileEndPoint extends AbstractEndPoint
     /**
      * POST /rooms/{room_id}/filesチャットに新しいファイルをアップロード.
      */
-    public function postRoomFile(): void
+    public function postRoomFile(string $filePath, string $message = ''): int
     {
-        // TODO create
+        $r = GuzzleMultipartRequest::create()
+            ->addContents('message', $message)
+            ->addFileContents('file', $filePath)
+            ->getResult();
+        return $this->client->postMultipart("rooms/{$this->roomId}/files", $r)['file_id'];
     }
 
     /**

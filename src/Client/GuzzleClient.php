@@ -51,6 +51,14 @@ class GuzzleClient implements ClientInterface
         return $this->jsonDecode($this->client->put($path, ['query' => $query])->getBody()->getContents());
     }
 
+    /**
+     * @throws Exception\GuzzleException
+     */
+    public function postMultipart(string $path, array $data = []): array
+    {
+        return $this->jsonDecode($this->client->post($path, ['multipart' => $data])->getBody()->getContents());
+    }
+
     private function jsonDecode(string $json): array
     {
         return json_decode($json, true);

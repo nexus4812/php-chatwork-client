@@ -43,4 +43,13 @@ interface ClientInterface
      * @return array<string, array<string>>
      */
     public function delete(string $path, array $query = []): array;
+
+    /**
+     * @param array<string, int> $data
+     *
+     * @throws RuntimeException
+     *
+     * @return array<string, array<string>>
+     */
+    public function postMultipart(string $path, array $data = []): array;
 }
