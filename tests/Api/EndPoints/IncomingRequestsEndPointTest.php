@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Api\EndPoints;
 
+use Nexus\ChatworkClient\Api\TestData\IncomingRequestResult;
 use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\IncomingRequestFactory;
 use Nexus\ChatworkClient\Entities\IncomingRequest;
@@ -17,65 +18,24 @@ use Prophecy\PhpUnit\ProphecyTrait;
 final class IncomingRequestsEndPointTest extends TestCase
 {
     use ProphecyTrait;
+    use IncomingRequestResult;
 
-    /**
-     * @dataProvider providerGetResponseData
-     */
-    public function testGetIncomingRequests(array $apiResult): void
+    public function testGetIncomingRequests(): void
     {
         $clientProphecy = $this->prophesize(ClientInterface::class);
-        $clientProphecy->get('incoming_requests')->willReturn($apiResult);
+        $clientProphecy->get('incoming_requests')->willReturn($this->incomingRequestItemsGet());
 
         $endPoint = new IncomingRequestsEndPoint($clientProphecy->reveal(), new IncomingRequestFactory());
-        static::assertSame($endPoint->getIncomingRequests()[0]->request_id, $apiResult[0]['request_id']);
         static::assertInstanceOf(IncomingRequest::class, $endPoint->getIncomingRequests()->first());
     }
 
-    /**
-     * @dataProvider providerPutResponseData
-     */
-    public function testPutIncomingRequests(array $apiResult): void
+    public function testPutIncomingRequests(): void
     {
         $requestId = 1;
         $clientProphecy = $this->prophesize(ClientInterface::class);
-        $clientProphecy->put("incoming_requests/{$requestId}")->willReturn($apiResult);
+        $clientProphecy->put("incoming_requests/{$requestId}")->willReturn($this->incomingRequestItemGet());
 
         $endPoint = new IncomingRequestsEndPoint($clientProphecy->reveal(), new IncomingRequestFactory());
         static::assertInstanceOf(IncomingRequest::class, $endPoint->putIncomingRequests($requestId));
-    }
-
-    public function providerGetResponseData()
-    {
-        $r = json_decode('[
-  {
-    "request_id": 123,
-    "account_id": 363,
-    "message": "hogehoge",
-    "name": "John Smith",
-    "chatwork_id": "tarochatworkid",
-    "organization_id": 101,
-    "organization_name": "Hello Company",
-    "department": "Marketing",
-    "avatar_image_url": "https://example.com/abc.png"
-  }
-]', true);
-
-        return [[$r]];
-    }
-
-    public function providerPutResponseData()
-    {
-        $r = json_decode(
-            '{
-  "account_id": 363,
-  "room_id": 1234,
-  "name": "John Smith",
-  "chatwork_id": "tarochatworkid",
-  "organization_id": 101,
-  "organization_name": "Hello Company",
-  "department": "Marketing",
-  "avatar_image_url": "https://example.com/abc.png"}', true);
-
-        return [[$r]];
     }
 }

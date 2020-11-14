@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Api\EndPoints;
 
+use Nexus\ChatworkClient\Api\TestData\ContactsResult;
 use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Contacts;
 use Nexus\ChatworkClient\Entities\Factories\ContactsFactory;
@@ -17,36 +18,14 @@ use Prophecy\PhpUnit\ProphecyTrait;
 final class ContactsEndPointTest extends TestCase
 {
     use ProphecyTrait;
+    use ContactsResult;
 
-    /**
-     * @dataProvider providerResponseData
-     */
-    public function testGetContacts(array $apiResult): void
+    public function testGetContacts(): void
     {
         $clientProphecy = $this->prophesize(ClientInterface::class);
-        $clientProphecy->get('contacts')->willReturn($apiResult);
+        $clientProphecy->get('contacts')->willReturn($this->contactsItemsGet());
 
         $endPoint = new ContactsEndPoint($clientProphecy->reveal(), new ContactsFactory());
-
-        static::assertSame($endPoint->getContacts()[0]->account_id, $apiResult[0]['account_id']);
-        static::assertInstanceOf(Contacts::class, $endPoint->getContacts()[0]);
-    }
-
-    public function providerResponseData(): array
-    {
-        $r = json_decode('[
-  {
-    "account_id": 123,
-    "room_id": 322,
-    "name": "John Smith",
-    "chatwork_id": "tarochatworkid",
-    "organization_id": 101,
-    "organization_name": "Hello Company",
-    "department": "Marketing",
-    "avatar_image_url": "https://example.com/abc.png"
-  }
-]', true);
-
-        return [[$r]];
+        static::assertInstanceOf(Contacts::class, $endPoint->getContacts()->first());
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Api\EndPoints;
 
+use Nexus\ChatworkClient\Api\TestData\StatusResult;
 use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\StatusFactory;
 use Nexus\ChatworkClient\Entities\Status;
@@ -17,32 +18,14 @@ use Prophecy\PhpUnit\ProphecyTrait;
 final class MyStatusEndPointTest extends TestCase
 {
     use ProphecyTrait;
+    use StatusResult;
 
-    /**
-     * @dataProvider providerStateData
-     */
-    public function testGetState($data): void
+    public function testGetState(): void
     {
         $clientProphecy = $this->prophesize(ClientInterface::class);
-        $clientProphecy->get('my/status')->willReturn($data);
+        $clientProphecy->get('my/status')->willReturn($this->statusItemGet());
 
         $endPoint = new MyStatusEndPoint($clientProphecy->reveal(), new StatusFactory());
         static::assertInstanceOf(Status::class, $endPoint->getStatus());
-    }
-
-    public function providerStateData()
-    {
-        $data = json_decode('{
-  "unread_room_num": 2,
-  "mention_room_num": 1,
-  "mytask_room_num": 3,
-  "unread_num": 12,
-  "mention_num": 1,
-  "mytask_num": 8
-}', true);
-
-        return [
-            [$data],
-        ];
     }
 }
