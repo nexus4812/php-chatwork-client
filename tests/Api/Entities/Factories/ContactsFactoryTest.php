@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities\Factories;
 
+use Nexus\ChatworkClient\Api\TestData\ContactsResult;
 use Nexus\ChatworkClient\Entities\Contacts;
 use PHPUnit\Framework\TestCase;
 
@@ -13,6 +14,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class ContactsFactoryTest extends TestCase
 {
+    use ContactsResult;
+
     /**
      * @dataProvider providerEntity
      */
@@ -32,29 +35,8 @@ final class ContactsFactoryTest extends TestCase
     public function providerEntity(): iterable
     {
         $factory = new ContactsFactory();
-        $contact = json_decode('  {
-    "account_id": 123,
-    "room_id": 322,
-    "name": "John Smith",
-    "chatwork_id": "tarochatworkid",
-    "organization_id": 101,
-    "organization_name": "Hello Company",
-    "department": "Marketing",
-    "avatar_image_url": "https://example.com/abc.png"
-  }', true);
-        yield [$factory->entity($contact)];
-
-        $contacts = json_decode('  [{
-    "account_id": 123,
-    "room_id": 322,
-    "name": "John Smith",
-    "chatwork_id": "tarochatworkid",
-    "organization_id": 101,
-    "organization_name": "Hello Company",
-    "department": "Marketing",
-    "avatar_image_url": "https://example.com/abc.png"
-  }]', true);
-        yield [$factory->entities($contacts)[0]];
-        yield [$factory->entitiesAsCollection($contacts)->first()];
+        yield [$factory->entity($this->contactsItemGet())];
+        yield [$factory->entities($this->contactsItemsGet())[0]];
+        yield [$factory->entitiesAsCollection($this->contactsItemsGet())->first()];
     }
 }

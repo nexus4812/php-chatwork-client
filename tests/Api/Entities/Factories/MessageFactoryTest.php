@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities\Factories;
 
+use Nexus\ChatworkClient\Api\TestData\MessageResult;
 use Nexus\ChatworkClient\Entities\Account;
 use Nexus\ChatworkClient\Entities\Message;
 use Nexus\ChatworkClient\Entities\PutMessage;
@@ -15,6 +16,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class MessageFactoryTest extends TestCase
 {
+    use MessageResult;
+
     /**
      * @dataProvider providerGetEntity
      */
@@ -47,46 +50,14 @@ final class MessageFactoryTest extends TestCase
     public function providerPutEntity(): iterable
     {
         $factory = new MessageFactory();
-        $r = json_decode('
-{
-  "unread_num": 461,
-  "mention_num": 0
-}', true);
-        yield [$factory->putEntity($r)];
+        yield [$factory->putEntity($this->messageItemPut())];
     }
 
     public function providerGetEntity(): iterable
     {
         $factory = new MessageFactory();
-        $r = json_decode('
-{
-  "message_id": "5",
-  "account": {
-    "account_id": 123,
-    "name": "Bob",
-    "avatar_image_url": "https://example.com/ico_avatar.png"
-  },
-  "body": "Hello Chatwork!",
-  "send_time": 1384242850,
-  "update_time": 0
-}', true);
-        yield [$factory->entity($r)];
-
-        $items = json_decode('
-[
-  {
-    "message_id": "5",
-    "account": {
-      "account_id": 123,
-      "name": "Bob",
-      "avatar_image_url": "https://example.com/ico_avatar.png"
-    },
-    "body": "Hello Chatwork!",
-    "send_time": 1384242850,
-    "update_time": 0
-  }
-]', true);
-        yield [$factory->entities($items)[0]];
-        yield [$factory->entitiesAsCollection($items)->first()];
+        yield [$factory->entity($this->messageItemGet())];
+        yield [$factory->entities($this->messageItemsGet())[0]];
+        yield [$factory->entitiesAsCollection($this->messageItemsGet())->first()];
     }
 }

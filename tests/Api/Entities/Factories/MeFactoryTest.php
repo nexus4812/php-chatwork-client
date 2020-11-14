@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities\Factories;
 
+use Nexus\ChatworkClient\Api\TestData\MeResult;
 use Nexus\ChatworkClient\Entities\Me;
 use PHPUnit\Framework\TestCase;
 
@@ -13,6 +14,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class MeFactoryTest extends TestCase
 {
+    use MeResult;
+
     /**
      * @dataProvider providerEntity
      */
@@ -43,28 +46,6 @@ final class MeFactoryTest extends TestCase
     public function providerEntity(): iterable
     {
         $factory = new MeFactory();
-        $r = json_decode('
-         {
-  "account_id": 123,
-  "room_id": 322,
-  "name": "John Smith",
-  "chatwork_id": "tarochatworkid",
-  "organization_id": 101,
-  "organization_name": "Hello Company",
-  "department": "Marketing",
-  "title": "CMO",
-  "url": "http://mycompany.example.com",
-  "introduction": "Self Introduction",
-  "mail": "taro@example.com",
-  "tel_organization": "XXX-XXXX-XXXX",
-  "tel_extension": "YYY-YYYY-YYYY",
-  "tel_mobile": "ZZZ-ZZZZ-ZZZZ",
-  "skype": "myskype_id",
-  "facebook": "myfacebook_id",
-  "twitter": "mytwitter_id",
-  "avatar_image_url": "https://example.com/abc.png",
-  "login_mail": "account@example.com"
-}', true);
-        yield [$factory->entity($r)];
+        yield [$factory->entity($this->getMeItem())];
     }
 }

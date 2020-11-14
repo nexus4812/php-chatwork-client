@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities\Factories;
 
+use Nexus\ChatworkClient\Api\TestData\StatusResult;
 use Nexus\ChatworkClient\Entities\Status;
 use PHPUnit\Framework\TestCase;
 
@@ -13,6 +14,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class StatusFactoryTest extends TestCase
 {
+    use StatusResult;
+
     /**
      * @dataProvider providerEntity
      */
@@ -30,15 +33,6 @@ final class StatusFactoryTest extends TestCase
     public function providerEntity(): iterable
     {
         $factory = new StatusFactory();
-        $r = json_decode('
-          {
-  "unread_room_num": 2,
-  "mention_room_num": 1,
-  "mytask_room_num": 3,
-  "unread_num": 12,
-  "mention_num": 1,
-  "mytask_num": 8
-  }', true);
-        yield [$factory->entity($r)];
+        yield [$factory->entity($this->statusItemGet())];
     }
 }

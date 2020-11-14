@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities\Factories;
 
+use Nexus\ChatworkClient\Api\TestData\FileResult;
 use Nexus\ChatworkClient\Entities\Account;
 use Nexus\ChatworkClient\Entities\File;
 use PHPUnit\Framework\TestCase;
@@ -14,6 +15,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class FileFactoryTest extends TestCase
 {
+    use FileResult;
+
     /**
      * @dataProvider providerGetEntity
      */
@@ -37,37 +40,8 @@ final class FileFactoryTest extends TestCase
     public function providerGetEntity(): iterable
     {
         $factory = new FileFactory();
-        $r = json_decode('
-{
-  "file_id":3,
-  "account": {
-    "account_id":123,
-    "name":"Bob",
-    "avatar_image_url": "https://example.com/ico_avatar.png"
-  },
-  "message_id": "22",
-  "filename": "README.md",
-  "filesize": 2232,
-  "upload_time": 1384414750
-}', true);
-        yield [$factory->entity($r)];
-
-        $items = json_decode('
-[
-  {
-    "file_id": 3,
-    "account": {
-      "account_id": 123,
-      "name": "Bob",
-      "avatar_image_url": "https://example.com/ico_avatar.png"
-    },
-    "message_id": "22",
-    "filename": "README.md",
-    "filesize": 2232,
-    "upload_time": 1384414750
-  }
-]', true);
-        yield [$factory->entities($items)[0]];
-        yield [$factory->entitiesAsCollection($items)->first()];
+        yield [$factory->entity($this->fileItemGet())];
+        yield [$factory->entities($this->fileItemsGet())[0]];
+        yield [$factory->entitiesAsCollection($this->fileItemsGet())->first()];
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities\Factories;
 
+use Nexus\ChatworkClient\Api\TestData\LinkResult;
 use Nexus\ChatworkClient\Entities\Link;
 use PHPUnit\Framework\TestCase;
 
@@ -13,6 +14,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class LinkFactoryTest extends TestCase
 {
+    use LinkResult;
+
     /**
      * @dataProvider providerGetEntity
      */
@@ -28,13 +31,6 @@ final class LinkFactoryTest extends TestCase
     public function providerGetEntity(): iterable
     {
         $factory = new LinkFactory();
-        $r = json_decode('
-         {
-  "public": true,
-  "url": "https://example.chatwork.com/g/randomcode42",
-  "need_acceptance": true,
-  "description": "Link description text"
-}', true);
-        yield [$factory->entity($r)];
+        yield [$factory->entity($this->linkItemGet())];
     }
 }

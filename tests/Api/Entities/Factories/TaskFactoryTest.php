@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities\Factories;
 
+use Nexus\ChatworkClient\Api\TestData\TaskResult;
 use Nexus\ChatworkClient\Entities\AssignedByAccount;
 use Nexus\ChatworkClient\Entities\PostTask;
 use Nexus\ChatworkClient\Entities\Task;
@@ -16,6 +17,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class TaskFactoryTest extends TestCase
 {
+    use TaskResult;
+
     /**
      * @dataProvider providerEntity
      */
@@ -59,60 +62,14 @@ final class TaskFactoryTest extends TestCase
     public function providerPostEntity(): iterable
     {
         $factory = new TaskFactory();
-        $r = json_decode('
-        {
-  "task_ids": [123,124]
-  }     ', true);
-
-        yield [$factory->postEntity($r)];
+        yield [$factory->postEntity($this->taskResultPost())];
     }
 
     public function providerEntity(): iterable
     {
         $factory = new TaskFactory();
-        $r = json_decode('
-          {
-    "task_id": 3,
-    "room": {
-      "room_id": 5,
-      "name": "Group Chat Name",
-      "icon_path": "https://example.com/ico_group.png"
-    },
-    "assigned_by_account": {
-      "account_id": 456,
-      "name": "Anna",
-      "avatar_image_url": "https://example.com/def.png"
-    },
-    "message_id": "13",
-    "body": "buy milk",
-    "limit_time": 1384354799,
-    "status": "open",
-    "limit_type": "date"
-  }', true);
-        yield [$factory->entity($r)];
-
-        $r = json_decode('
-        [
-  {
-    "task_id": 3,
-    "room": {
-      "room_id": 5,
-      "name": "Group Chat Name",
-      "icon_path": "https://example.com/ico_group.png"
-    },
-    "assigned_by_account": {
-      "account_id": 456,
-      "name": "Anna",
-      "avatar_image_url": "https://example.com/def.png"
-    },
-    "message_id": "13",
-    "body": "buy milk",
-    "limit_time": 1384354799,
-    "status": "open",
-    "limit_type": "date"
-  }
-]', true);
-        yield [$factory->entities($r)[0]];
-        yield [$factory->entitiesAsCollection($r)->first()];
+        yield [$factory->entity($this->taskItemGet())];
+        yield [$factory->entities($this->taskItemsGet())[0]];
+        yield [$factory->entitiesAsCollection($this->taskItemsGet())->first()];
     }
 }

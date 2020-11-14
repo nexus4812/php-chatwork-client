@@ -51,6 +51,7 @@ class RoomFileEndPoint extends AbstractEndPoint
             ->addContents('message', $message)
             ->addFileContents('file', $filePath)
             ->getResult();
+
         return $this->client->postMultipart("rooms/{$this->roomId}/files", $r)['file_id'];
     }
 

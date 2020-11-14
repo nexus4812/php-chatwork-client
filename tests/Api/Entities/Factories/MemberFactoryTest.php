@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Api\Entities\Factories;
 
+use Nexus\ChatworkClient\Api\TestData\MemberResult;
 use Nexus\ChatworkClient\Entities\Factories\MemberFactory;
 use Nexus\ChatworkClient\Entities\Member;
 use Nexus\ChatworkClient\Entities\PutMembers;
@@ -11,6 +12,8 @@ use PHPUnit\Framework\TestCase;
 
 final class MemberFactoryTest extends TestCase
 {
+    use MemberResult;
+
     /**
      * @dataProvider providerGetEntity
      */
@@ -48,32 +51,13 @@ final class MemberFactoryTest extends TestCase
     public function providerGetEntity(): iterable
     {
         $factory = new MemberFactory();
-        $r = json_decode('
-         [
-  {
-    "account_id": 123,
-    "role": "member",
-    "name": "John Smith",
-    "chatwork_id": "tarochatworkid",
-    "organization_id": 101,
-    "organization_name": "Hello Company",
-    "department": "Marketing",
-    "avatar_image_url": "https://example.com/abc.png"
-  }
-]', true);
-        yield [$factory->entities($r)[0]];
-        yield [$factory->entitiesAsCollection($r)->first()];
+        yield [$factory->entities($this->memberItemsGet())[0]];
+        yield [$factory->entitiesAsCollection($this->memberItemsGet())->first()];
     }
 
     public function providerPutEntity(): iterable
     {
         $factory = new MemberFactory();
-        $r = json_decode('
-{
-  "admin": [123, 542, 1001],
-  "member": [10, 103],
-  "readonly": [6, 11]
-}', true);
-        yield [$factory->putEntity($r)];
+        yield [$factory->putEntity($this->memberItemPut())];
     }
 }

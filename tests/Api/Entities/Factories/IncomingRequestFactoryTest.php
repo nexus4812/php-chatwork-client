@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities\Factories;
 
+use Nexus\ChatworkClient\Api\TestData\IncomingRequestResult;
 use Nexus\ChatworkClient\Entities\IncomingRequest;
 use PHPUnit\Framework\TestCase;
 
@@ -13,6 +14,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class IncomingRequestFactoryTest extends TestCase
 {
+    use IncomingRequestResult;
+
     /**
      * @dataProvider providerEntity
      */
@@ -33,31 +36,8 @@ final class IncomingRequestFactoryTest extends TestCase
     public function providerEntity(): iterable
     {
         $factory = new IncomingRequestFactory();
-        $request = json_decode('  {
-    "request_id": 123,
-    "account_id": 363,
-    "message": "hogehoge",
-    "name": "John Smith",
-    "chatwork_id": "tarochatworkid",
-    "organization_id": 101,
-    "organization_name": "Hello Company",
-    "department": "Marketing",
-    "avatar_image_url": "https://example.com/abc.png"
-  }', true);
-        yield [$factory->entity($request)];
-
-        $requests = json_decode('  [{
-    "request_id": 123,
-    "account_id": 363,
-    "message": "hogehoge",
-    "name": "John Smith",
-    "chatwork_id": "tarochatworkid",
-    "organization_id": 101,
-    "organization_name": "Hello Company",
-    "department": "Marketing",
-    "avatar_image_url": "https://example.com/abc.png"
-  }]', true);
-        yield [$factory->entities($requests)[0]];
-        yield [$factory->entitiesAsCollection($requests)->first()];
+        yield [$factory->entity($this->incomingRequestItemGet())];
+        yield [$factory->entities($this->incomingRequestItemsGet())[0]];
+        yield [$factory->entitiesAsCollection($this->incomingRequestItemsGet())->first()];
     }
 }
