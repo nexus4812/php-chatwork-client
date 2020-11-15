@@ -14,7 +14,7 @@ class Task implements EntityInterface
     public $task_id;
 
     /**
-     * @var TinyRoom
+     * @var OmittedRoom
      */
     public $room;
 

@@ -8,7 +8,7 @@ use Nexus\ChatworkClient\Api\TestData\TaskResult;
 use Nexus\ChatworkClient\Entities\AssignedByAccount;
 use Nexus\ChatworkClient\Entities\PostTask;
 use Nexus\ChatworkClient\Entities\Task;
-use Nexus\ChatworkClient\Entities\TinyRoom;
+use Nexus\ChatworkClient\Entities\OmittedRoom;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,7 +27,7 @@ final class TaskFactoryTest extends TestCase
         static::assertInstanceOf(Task::class, $entity);
         static::assertSame($entity->task_id, 3);
 
-        static::assertInstanceOf(TinyRoom::class, $entity->room);
+        static::assertInstanceOf(OmittedRoom::class, $entity->room);
         static::assertSame($entity->room->room_id, 5);
         static::assertSame($entity->room->name, 'Group Chat Name');
         static::assertSame($entity->room->icon_path, 'https://example.com/ico_group.png');
