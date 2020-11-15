@@ -46,7 +46,7 @@ class GuzzleClient implements ClientInterface
     /**
      * @throws Exception\GuzzleException
      */
-    public function delete(string $path, array $query = []): array
+    public function delete(string $path, array $query = [])
     {
         return $this->jsonDecode($this->client->put($path, ['query' => $query])->getBody()->getContents());
     }

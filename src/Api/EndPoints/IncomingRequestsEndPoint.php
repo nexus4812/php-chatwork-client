@@ -44,6 +44,6 @@ class IncomingRequestsEndPoint extends AbstractEndPoint
      */
     public function deleteIncomingRequests(int $requestId): void
     {
-        $this->client->put("incoming_requests/{$requestId}");
+        $this->client->delete("incoming_requests/{$requestId}");
     }
 }

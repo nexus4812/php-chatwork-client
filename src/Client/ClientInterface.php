@@ -40,9 +40,9 @@ interface ClientInterface
      *
      * @throws RuntimeException
      *
-     * @return array<string, array<string>>
+     * @return array<string, array<string>>|null
      */
-    public function delete(string $path, array $query = []): array;
+    public function delete(string $path, array $query = []);
 
     /**
      * @param array<string, int> $data

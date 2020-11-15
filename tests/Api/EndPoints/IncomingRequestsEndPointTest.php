@@ -38,4 +38,14 @@ final class IncomingRequestsEndPointTest extends TestCase
         $endPoint = new IncomingRequestsEndPoint($clientProphecy->reveal(), new IncomingRequestFactory());
         static::assertInstanceOf(IncomingRequest::class, $endPoint->putIncomingRequests($requestId));
     }
+
+    public function testDeleteIncomingRequests(): void
+    {
+        $requestId = 1;
+        $clientProphecy = $this->prophesize(ClientInterface::class);
+        $clientProphecy->delete("incoming_requests/{$requestId}")->willReturn(null);
+
+        $endPoint = new IncomingRequestsEndPoint($clientProphecy->reveal(), new IncomingRequestFactory());
+        static::assertNull($endPoint->deleteIncomingRequests($requestId));
+    }
 }
