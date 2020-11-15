@@ -6,9 +6,9 @@ namespace Nexus\ChatworkClient\Entities\Factories;
 
 use Nexus\ChatworkClient\Api\TestData\TaskResult;
 use Nexus\ChatworkClient\Entities\AssignedByAccount;
+use Nexus\ChatworkClient\Entities\OmittedRoom;
 use Nexus\ChatworkClient\Entities\PostTask;
 use Nexus\ChatworkClient\Entities\Task;
-use Nexus\ChatworkClient\Entities\OmittedRoom;
 use PHPUnit\Framework\TestCase;
 
 /**

@@ -48,4 +48,13 @@ trait RoomResult
   }
 ]', true);
     }
+
+    public function roomItemsPutAndPost()
+    {
+        return json_decode('
+{
+  "room_id": 1234
+}
+', true);
+    }
 }

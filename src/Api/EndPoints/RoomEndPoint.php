@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Api\EndPoints;
 
+use Illuminate\Support\Collection;
 use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\RoomFactory;
 use Nexus\ChatworkClient\Entities\Room;
+use Nexus\ChatworkClient\Request\Enum\ActionType;
+use Nexus\ChatworkClient\Request\Enum\IconPreset;
 
 class RoomEndPoint extends AbstractEndPoint
 {
@@ -25,9 +28,9 @@ class RoomEndPoint extends AbstractEndPoint
      *
      * @return array<Room>
      */
-    public function getRooms(): array
+    public function getRooms(): Collection
     {
-        return $this->factory->entities($this->client->get('rooms'));
+        return $this->factory->entitiesAsCollection($this->client->get('rooms'));
     }
 
     /**
@@ -59,16 +62,20 @@ class RoomEndPoint extends AbstractEndPoint
      *
      * @param array $option
      */
-    public function putRoom(int $roomId, $option = []): int
+    public function putRoom(int $roomId, IconPreset $iconPreset, string $name = '', string $description = ''): int
     {
-        return $this->factory->entity($this->client->put("rooms/{$roomId}", $option))->room_id;
+        return $this->client->put("rooms/{$roomId}", [
+            'name' => $name,
+            'icon_persent' => $iconPreset->toString(),
+            'description' => $description,
+        ])['room_id'];
     }
 
     /**
      * @param string $actionType leave or delete
      */
-    public function deleteRoom(int $roomId, string $actionType = 'leave'): void
+    public function deleteRoom(int $roomId, ActionType $actionType): void
     {
-        $this->client->delete("rooms/{$roomId}", ['action_type' => $actionType]);
+        $this->client->delete("rooms/{$roomId}", ['action_type' => $actionType->toString()]);
     }
 }

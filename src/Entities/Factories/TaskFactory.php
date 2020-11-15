@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Nexus\ChatworkClient\Entities\Factories;
 
 use Nexus\ChatworkClient\Entities\AssignedByAccount;
+use Nexus\ChatworkClient\Entities\OmittedRoom;
 use Nexus\ChatworkClient\Entities\PostTask;
 use Nexus\ChatworkClient\Entities\Task;
-use Nexus\ChatworkClient\Entities\OmittedRoom;
 
 class TaskFactory extends AbstractEntityFactory implements EntityFactoryInterface
 {

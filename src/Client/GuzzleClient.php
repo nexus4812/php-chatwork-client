@@ -48,7 +48,7 @@ class GuzzleClient implements ClientInterface
      */
     public function delete(string $path, array $query = [])
     {
-        return $this->jsonDecode($this->client->put($path, ['query' => $query])->getBody()->getContents());
+        return $this->jsonDecode($this->client->delete($path, ['query' => $query])->getBody()->getContents());
     }
 
     /**
