@@ -22,7 +22,6 @@ final class IconPresetTest extends TestCase
 
     public function testIconPresent(): void
     {
-        static ::assertSame((string) IconPreset::notUsed(), '');
         $this->assertKey(IconPreset::group()->toString());
         $this->assertKey(IconPreset::check()->toString());
         $this->assertKey(IconPreset::document()->toString());
