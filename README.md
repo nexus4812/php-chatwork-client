@@ -20,9 +20,7 @@ $chatwork = Nexus\ChatworkClient\Api\Chatwork::create('## Your API Token ##');
 ```
 
 
-
-
-取得は結果`Nexus\ChatworkClient\Entities`で定義されたオブジェクトが返されます。
+取得結果は`Nexus\ChatworkClient\Entities`で定義されたオブジェクトが返されます。
 
 ```php
 // 自分の情報を取得する
@@ -34,11 +32,13 @@ echo($me->avatar_image_url);    // https://example.com/abc.png
 ```
 
 
-結果が複数の場合、LaravelのCollectionクラスが返されます
+結果が複数の場合、Laravelの[Collection](https://readouble.com/laravel/8.x/ja/collections.html)クラスが返されます
 ```php
 // タスク期限が明日のタスクを抽出する
-$tasks = $chatwork->my()->getTasks()->filter(function (Task $task) {
-    return $task->limitTime()->isNextDay();
+$tomorrow = Carbon::Today()->addDay();
+$tasks = $chatwork->myTask()->getTasks()->filter(function (Task $task) {
+    // タイムスタンプはすべてCarbonで取得できます
+    return $tomorrow->isSameDay($task->limitTime());
 });
 
 $tasks->each(function (Task $task) {
