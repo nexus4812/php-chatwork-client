@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Request\Enum;
 
-final class IconPreset extends AbstractEnum
+final class IconPreset extends AbstractEnum implements InterfaceEnum
 {
     const GROUP = 'group';
     const CHECK = 'check';

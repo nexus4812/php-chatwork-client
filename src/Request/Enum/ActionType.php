@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Request\Enum;
 
-final class ActionType extends AbstractEnum
+final class ActionType extends AbstractEnum implements InterfaceEnum
 {
     const LEAVE = 'leave';
     const DELETE = 'delete';
