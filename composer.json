@@ -30,9 +30,9 @@
   },
 
   "scripts": {
-    "test": "./vendor/bin/phpunit",
+    "test": "./vendor/bin/phpunit tests",
     "cs": "./vendor/bin/php-cs-fixer fix",
     "stan": "vendor/bin/phpstan analyse -l 1 ./src",
-    "ck": "composer cs; composer stan"
+    "ck": "composer cs; composer stan; composer test"
   }
 }

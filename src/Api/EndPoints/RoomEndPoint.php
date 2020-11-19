@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\RoomFactory;
 use Nexus\ChatworkClient\Entities\Room;
+use Nexus\ChatworkClient\Request\Builder\PostRoomBuilder;
 use Nexus\ChatworkClient\Request\Enum\ActionType;
 use Nexus\ChatworkClient\Request\Enum\IconPreset;
 
@@ -36,17 +37,11 @@ class RoomEndPoint extends AbstractEndPoint
     /**
      * POST /rooms グループチャットを新規作成.
      *
-     * @param array<int>   $membersAdminIds
-     * @param array<mixed> $options
-     *
      * @return int room_id
      */
-    public function postRoom(array $membersAdminIds, string $name, $options = []): int
+    public function postRoomByBuilder(PostRoomBuilder $builder): int
     {
-        return $this->client->post('rooms', array_merge([
-            'members_admin_ids' => $membersAdminIds,
-            'name' => $name,
-        ], $options))['room_id'];
+        return $this->client->post('rooms', $builder->build())['room_id'];
     }
 
     /**

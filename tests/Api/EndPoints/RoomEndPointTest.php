@@ -9,7 +9,6 @@ use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\RoomFactory;
 use Nexus\ChatworkClient\Entities\Room;
 use Nexus\ChatworkClient\Request\Enum\ActionType;
-use Nexus\ChatworkClient\Request\Enum\IconPreset;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -36,8 +35,6 @@ final class RoomEndPointTest extends TestCase
         $endPoint = new RoomEndPoint($clientProphecy->reveal(), new RoomFactory());
         static::assertInstanceOf(Room::class, $endPoint->getRooms()->first());
         static::assertInstanceOf(Room::class, $endPoint->getRoom($roomId));
-        static::assertSame(123, $endPoint->putRoom($roomId, IconPreset::notUsed(), 'test room', 'detail'));
-
         static::assertNull($endPoint->deleteRoom($roomId, ActionType::delete()));
     }
 }
