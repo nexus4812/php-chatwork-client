@@ -6,8 +6,6 @@ namespace Nexus\ChatworkClient\Request\Enum;
 
 final class IconPreset extends AbstractEnum
 {
-    const NOT_USED = '';
-
     const GROUP = 'group';
     const CHECK = 'check';
     const DOCUMENT = 'document';
@@ -25,11 +23,6 @@ final class IconPreset extends AbstractEnum
     const MUSIC = 'music';
     const SPORTS = 'sports';
     const TRAVEL = 'travel';
-
-    public static function notUsed(): self
-    {
-        return new self(self::NOT_USED);
-    }
 
     public static function group(): self
     {
