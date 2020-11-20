@@ -49,16 +49,6 @@ class PostRoomBuilder extends AbstractBuilder implements InterfaceBuilder
      */
     protected $description;
 
-    /**
-     * 必須のパラメーター
-     *
-     * @param array<array> $adminIds
-     */
-    public static function createByRequired(string $name, array $adminIds): self
-    {
-        return (new self())->setName($name)->setMembersAdminIds($adminIds);
-    }
-
     public function setName(string $name): self
     {
         $this->name = $name;

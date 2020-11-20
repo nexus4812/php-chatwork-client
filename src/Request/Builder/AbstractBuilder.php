@@ -27,5 +27,7 @@ abstract class AbstractBuilder
      *
      * @throws LogicException
      */
-    abstract protected function assert(): void;
+    protected function assert(): void
+    {
+    }
 }

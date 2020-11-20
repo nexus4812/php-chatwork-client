@@ -9,8 +9,8 @@ use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\RoomFactory;
 use Nexus\ChatworkClient\Entities\Room;
 use Nexus\ChatworkClient\Request\Builder\PostRoomBuilder;
+use Nexus\ChatworkClient\Request\Builder\PutRoomBuilder;
 use Nexus\ChatworkClient\Request\Enum\ActionType;
-use Nexus\ChatworkClient\Request\Enum\IconPreset;
 
 class RoomEndPoint extends AbstractEndPoint
 {
@@ -45,6 +45,18 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
+     * POST /rooms グループチャットを新規作成.
+     *
+     * @param array $adminIds<int>
+     */
+    public function postRoomWithRequired(string $name, array $adminIds): int
+    {
+        $builder = (new PostRoomBuilder())->setName($name)->setMembersAdminIds($adminIds);
+
+        return $this->client->post('rooms', $builder->build())['room_id'];
+    }
+
+    /**
      * GET /rooms/{room_id} チャットの名前、アイコン、種類(my/direct/group)を取得.
      */
     public function getRoom(int $roomId): Room
@@ -54,16 +66,10 @@ class RoomEndPoint extends AbstractEndPoint
 
     /**
      * PUT /rooms/{room_id} チャットの名前、アイコンをアップデート.
-     *
-     * @param array $option
      */
-    public function putRoom(int $roomId, IconPreset $iconPreset, string $name = '', string $description = ''): int
+    public function putRoom(int $roomId, PutRoomBuilder $builder): int
     {
-        return $this->client->put("rooms/{$roomId}", [
-            'name' => $name,
-            'icon_persent' => $iconPreset->toString(),
-            'description' => $description,
-        ])['room_id'];
+        return $this->client->put("rooms/{$roomId}", $builder->build())['room_id'];
     }
 
     /**
