@@ -16,4 +16,12 @@ trait LinkResult
   "description": "Link description text"
 }', true);
     }
+
+    public function linkItemDelete()
+    {
+        return json_decode('
+{
+  "public": false
+}', true);
+    }
 }

@@ -14,7 +14,7 @@ abstract class AbstractBuilder
 
         $data = [];
         foreach ($this as $key => $value) {
-            if (!empty($value)) {
+            if (!empty($value) || 0 === $value) {
                 $data[$key] = $value;
             }
         }
