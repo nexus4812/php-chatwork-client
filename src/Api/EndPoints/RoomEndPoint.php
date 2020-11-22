@@ -67,7 +67,7 @@ class RoomEndPoint extends AbstractEndPoint
     /**
      * PUT /rooms/{room_id} チャットの名前、アイコンをアップデート.
      */
-    public function putRoom(int $roomId, PutRoomBuilder $builder): int
+    public function putRoomByBuilder(int $roomId, PutRoomBuilder $builder): int
     {
         return $this->client->put("rooms/{$roomId}", $builder->build())['room_id'];
     }
