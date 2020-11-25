@@ -7,9 +7,8 @@ namespace Nexus\ChatworkClient\Api\EndPoints;
 use Illuminate\Support\Collection;
 use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\TaskFactory;
-use Nexus\ChatworkClient\Entities\PostTask;
 use Nexus\ChatworkClient\Entities\Task;
-use Nexus\ChatworkClient\Request\Builder\PostRoomBuilder;
+use Nexus\ChatworkClient\Request\Builder\PostTaskBuilder;
 use Nexus\ChatworkClient\Request\Enum\TaskStatus;
 
 class RoomTaskEndPoint extends AbstractEndPoint
@@ -17,7 +16,7 @@ class RoomTaskEndPoint extends AbstractEndPoint
     /**
      * @var TaskFactory
      */
-    protected $taskFactory;
+    protected $factory;
 
     /**
      * @var int
@@ -39,7 +38,7 @@ class RoomTaskEndPoint extends AbstractEndPoint
      */
     public function getRoomTasks(): Collection
     {
-        return $this->taskFactory->entitiesAsCollection(
+        return $this->factory->entitiesAsCollection(
             $this->client->get("rooms/{$this->roomId}/tasks")
         );
     }
@@ -47,13 +46,13 @@ class RoomTaskEndPoint extends AbstractEndPoint
     /**
      * POST /rooms/{room_id}/tasksチャットに新しいタスクを追加.
      *
+     * @return array<int> task ids
+     *
      * @see https://developer.chatwork.com/ja/endpoint_rooms.html#POST-rooms-room_id-tasks
      */
-    public function postRoomsTasks(PostRoomBuilder $builder): PostTask
+    public function postRoomsTasks(PostTaskBuilder $builder): array
     {
-        return $this->taskFactory->postEntity(
-            $this->client->post("rooms/{$this->roomId}/tasks", $builder->build())
-        );
+        return $this->client->post("rooms/{$this->roomId}/tasks", $builder->build())['task_ids'];
     }
 
     /**
@@ -63,7 +62,7 @@ class RoomTaskEndPoint extends AbstractEndPoint
      */
     public function getRoomTask(int $taskId): Task
     {
-        return $this->taskFactory->entity(
+        return $this->factory->entity(
             $this->client->get("rooms/{$this->roomId}/tasks/{$taskId}")
         );
     }
@@ -73,7 +72,7 @@ class RoomTaskEndPoint extends AbstractEndPoint
      *
      * @see https://developer.chatwork.com/ja/endpoint_rooms.html#PUT-rooms-room_id-tasks-task_id-status
      */
-    public function putRoomTask(int $taskId, TaskStatus $status): int
+    public function putRoomTaskStatus(int $taskId, TaskStatus $status): int
     {
         return $this->client->put(
             "rooms/{$this->roomId}/tasks/{$taskId}/status", ['body' => $status->toString()]

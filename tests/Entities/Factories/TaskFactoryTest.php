@@ -7,7 +7,6 @@ namespace Nexus\ChatworkClient\Entities\Factories;
 use Nexus\ChatworkClient\Api\TestData\TaskResult;
 use Nexus\ChatworkClient\Entities\AssignedByAccount;
 use Nexus\ChatworkClient\Entities\OmittedRoom;
-use Nexus\ChatworkClient\Entities\PostTask;
 use Nexus\ChatworkClient\Entities\Task;
 use PHPUnit\Framework\TestCase;
 
@@ -42,27 +41,6 @@ final class TaskFactoryTest extends TestCase
         static::assertSame($entity->limit_time, 1384354799);
         static::assertSame($entity->status, 'open');
         static::assertSame($entity->limit_type, 'date');
-    }
-
-    /**
-     * @dataProvider providerPostEntity
-     */
-    public function testPostEntity(PostTask $entity): void
-    {
-        static::assertInstanceOf(PostTask::class, $entity);
-
-        foreach ($entity->task_ids as $id) {
-            static::assertIsInt($id);
-        }
-
-        static::assertSame($entity->task_ids[0], 123);
-        static::assertSame($entity->task_ids[1], 124);
-    }
-
-    public function providerPostEntity(): iterable
-    {
-        $factory = new TaskFactory();
-        yield [$factory->postEntity($this->taskResultPost())];
     }
 
     public function providerEntity(): iterable

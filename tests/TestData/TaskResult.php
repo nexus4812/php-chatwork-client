@@ -61,4 +61,12 @@ trait TaskResult
   "task_ids": [123,124]
   }     ', true);
     }
+
+    public function taskResultPut()
+    {
+        return json_decode('
+        {
+  "task_id": 1234
+  }     ', true);
+    }
 }
