@@ -22,7 +22,11 @@ class ContactsEndPoint extends AbstractEndPoint
     }
 
     /**
+     * GET /contacts 自分のコンタクト一覧を取得
+     *
      * @return array<Contacts>|Collection
+     *
+     * @see https://developer.chatwork.com/ja/endpoint_contacts.html#GET-contacts
      */
     public function getContacts(): Collection
     {

@@ -28,6 +28,8 @@ class RoomEndPoint extends AbstractEndPoint
      * GET /rooms 自分のチャット一覧の取得.
      *
      * @return array<Room>
+     *
+     * @see https://developer.chatwork.com/ja/endpoint_rooms.html#GET-rooms
      */
     public function getRooms(): Collection
     {
@@ -38,6 +40,8 @@ class RoomEndPoint extends AbstractEndPoint
      * POST /rooms グループチャットを新規作成.
      *
      * @return int room_id
+     *
+     * @see https://developer.chatwork.com/ja/endpoint_rooms.html#POST-rooms
      */
     public function postRoomByBuilder(PostRoomBuilder $builder): int
     {
@@ -48,6 +52,8 @@ class RoomEndPoint extends AbstractEndPoint
      * POST /rooms グループチャットを新規作成.
      *
      * @param array $adminIds<int>
+     *
+     * @see https://developer.chatwork.com/ja/endpoint_rooms.html#POST-rooms
      */
     public function postRoomWithRequired(string $name, array $adminIds): int
     {
@@ -58,6 +64,8 @@ class RoomEndPoint extends AbstractEndPoint
 
     /**
      * GET /rooms/{room_id} チャットの名前、アイコン、種類(my/direct/group)を取得.
+     *
+     * @see https://developer.chatwork.com/ja/endpoint_rooms.html#GET-rooms-room_id
      */
     public function getRoom(int $roomId): Room
     {
@@ -66,6 +74,8 @@ class RoomEndPoint extends AbstractEndPoint
 
     /**
      * PUT /rooms/{room_id} チャットの名前、アイコンをアップデート.
+     *
+     * @see https://developer.chatwork.com/ja/endpoint_rooms.html#PUT-rooms-room_id
      */
     public function putRoomByBuilder(int $roomId, PutRoomBuilder $builder): int
     {
@@ -73,7 +83,9 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * @param string $actionType leave or delete
+     * DELETE /rooms/{room_id} グループチャットを退席/削除する
+     *
+     * @see https://developer.chatwork.com/ja/endpoint_rooms.html#DELETE-rooms-room_id
      */
     public function deleteRoom(int $roomId, ActionType $actionType): void
     {

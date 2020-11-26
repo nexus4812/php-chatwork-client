@@ -20,6 +20,11 @@ class MeEndPoint extends AbstractEndPoint
         parent::__construct($client, $factory);
     }
 
+    /**
+     * GET /me 自分自身の情報を取得
+     *
+     * @see https://developer.chatwork.com/ja/endpoint_me.html#GET-me
+     */
     public function getMe(): Me
     {
         return $this->factory->entity($this->client->get('me'));
