@@ -15,17 +15,20 @@ class PostRoomBuilder extends AbstractBuilder implements InterfaceBuilder
     protected $name;
 
     /**
-     * @var array<int> 閲覧のみ権限のユーザー
+     * @var string 閲覧のみ権限のユーザー
+     *             カンマ区切りで複数の値
      */
     protected $members_readonly_ids;
 
     /**
-     * @var array<int> メンバー権限のユーザー
+     * @var string メンバー権限のユーザー
+     *             カンマ区切りで複数の値
      */
     protected $members_member_ids;
 
     /**
-     * @var array<int> 管理者権限のユーザー (必須)
+     * @var string 管理者権限のユーザー (必須)
+     *             カンマ区切りで複数の値
      */
     protected $members_admin_ids;
 
@@ -63,7 +66,7 @@ class PostRoomBuilder extends AbstractBuilder implements InterfaceBuilder
      */
     public function setMembersReadonlyIds(array $ids): self
     {
-        $this->members_readonly_ids = $ids;
+        $this->members_readonly_ids = $this->arrayIdsToString($ids);
 
         return $this;
     }
@@ -73,7 +76,7 @@ class PostRoomBuilder extends AbstractBuilder implements InterfaceBuilder
      */
     public function setMembersMemberIds(array $ids): self
     {
-        $this->members_member_ids = $ids;
+        $this->members_member_ids = $this->arrayIdsToString($ids);
 
         return $this;
     }
@@ -83,7 +86,7 @@ class PostRoomBuilder extends AbstractBuilder implements InterfaceBuilder
      */
     public function setMembersAdminIds(array $ids): self
     {
-        $this->members_admin_ids = $ids;
+        $this->members_admin_ids = $this->arrayIdsToString($ids);
 
         return $this;
     }
@@ -131,7 +134,7 @@ class PostRoomBuilder extends AbstractBuilder implements InterfaceBuilder
 
     private function assertAdminIdsIsProvided(): void
     {
-        if (empty($this->members_admin_ids) || !\is_int($this->members_admin_ids[0])) {
+        if (empty($this->members_admin_ids)) {
             throw new LogicException('At least one admin id must be provided');
         }
     }

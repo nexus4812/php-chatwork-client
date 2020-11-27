@@ -8,6 +8,7 @@ use Nexus\ChatworkClient\Api\TestData\RoomResult;
 use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\RoomFactory;
 use Nexus\ChatworkClient\Entities\Room;
+use Nexus\ChatworkClient\Request\Builder\PostRoomBuilder;
 use Nexus\ChatworkClient\Request\Builder\PutRoomBuilder;
 use Nexus\ChatworkClient\Request\Enum\ActionType;
 use Nexus\ChatworkClient\Request\Enum\IconPreset;
@@ -43,11 +44,15 @@ final class RoomEndPointTest extends TestCase
     {
         $roomId = 1234;
         $clientProphecy = $this->prophesize(ClientInterface::class);
-        $query = ['name' => 'name_test', 'members_admin_ids' => [5678]];
+        $query = ['name' => 'name_test', 'members_admin_ids' => '5678'];
 
         $clientProphecy->post('rooms', $query)->willReturn($this->roomItemsPutAndPost());
         $endPoint = new RoomEndPoint($clientProphecy->reveal(), new RoomFactory());
-        $ReturnRoomId = $endPoint->postRoomWithRequired('name_test', [5678]);
+
+        $ReturnRoomId = $endPoint->postRoomByBuilder(
+            (new PostRoomBuilder())->setName('name_test')->setMembersAdminIds([5678])
+        );
+
         static::assertSame($roomId, $ReturnRoomId);
     }
 

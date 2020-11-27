@@ -19,7 +19,7 @@ class RoomLinkRequestBuilderTest extends TestCase
 
         static::assertSame($array['code'], 'unique-link-name');
         static::assertSame($array['description'], 'This is a public room for topic A.');
-        static::assertSame($array['need_acceptance'], 0);
+        static::assertSame($array['need_acceptance'], '0');
 
         static ::assertSame([], (new RoomLinkBuilder())->build());
     }

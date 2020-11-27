@@ -22,7 +22,7 @@ class ContactsEndPoint extends AbstractEndPoint
     }
 
     /**
-     * GET /contacts 自分のコンタクト一覧を取得
+     * GET /contacts 自分のコンタクト一覧を取得.
      *
      * @return array<Contacts>|Collection
      *

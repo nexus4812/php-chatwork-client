@@ -21,7 +21,7 @@ class MeEndPoint extends AbstractEndPoint
     }
 
     /**
-     * GET /me 自分自身の情報を取得
+     * GET /me 自分自身の情報を取得.
      *
      * @see https://developer.chatwork.com/ja/endpoint_me.html#GET-me
      */

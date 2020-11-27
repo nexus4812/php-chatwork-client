@@ -49,27 +49,15 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * POST /rooms グループチャットを新規作成.
-     *
-     * @param array $adminIds<int>
-     *
-     * @see https://developer.chatwork.com/ja/endpoint_rooms.html#POST-rooms
-     */
-    public function postRoomWithRequired(string $name, array $adminIds): int
-    {
-        $builder = (new PostRoomBuilder())->setName($name)->setMembersAdminIds($adminIds);
-
-        return $this->client->post('rooms', $builder->build())['room_id'];
-    }
-
-    /**
      * GET /rooms/{room_id} チャットの名前、アイコン、種類(my/direct/group)を取得.
      *
      * @see https://developer.chatwork.com/ja/endpoint_rooms.html#GET-rooms-room_id
      */
     public function getRoom(int $roomId): Room
     {
-        return $this->factory->entity($this->client->get("rooms/{$roomId}"));
+        return $this->factory->entity(
+            $this->client->get("rooms/{$roomId}")
+        );
     }
 
     /**
@@ -83,7 +71,7 @@ class RoomEndPoint extends AbstractEndPoint
     }
 
     /**
-     * DELETE /rooms/{room_id} グループチャットを退席/削除する
+     * DELETE /rooms/{room_id} グループチャットを退席/削除する.
      *
      * @see https://developer.chatwork.com/ja/endpoint_rooms.html#DELETE-rooms-room_id
      */

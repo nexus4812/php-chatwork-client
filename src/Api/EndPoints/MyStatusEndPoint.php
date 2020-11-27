@@ -21,7 +21,7 @@ class MyStatusEndPoint extends AbstractEndPoint
     }
 
     /**
-     * GET /my/status 自分の未読数、未読To数、未完了タスク数を返す
+     * GET /my/status 自分の未読数、未読To数、未完了タスク数を返す.
      *
      * @see https://developer.chatwork.com/ja/endpoint_my.html#GET-my-status
      */

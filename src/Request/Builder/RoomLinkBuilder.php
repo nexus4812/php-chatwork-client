@@ -37,7 +37,7 @@ class RoomLinkBuilder extends AbstractBuilder implements InterfaceBuilder
 
     public function setNeedAcceptance(bool $need_acceptance): self
     {
-        $this->need_acceptance = $need_acceptance ? 1 : 0;
+        $this->need_acceptance = $need_acceptance ? '1' : '0';
 
         return $this;
     }

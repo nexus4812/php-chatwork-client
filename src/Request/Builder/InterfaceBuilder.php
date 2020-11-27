@@ -6,5 +6,8 @@ namespace Nexus\ChatworkClient\Request\Builder;
 
 interface InterfaceBuilder
 {
+    /**
+     * @return array<string>
+     */
     public function build(): array;
 }

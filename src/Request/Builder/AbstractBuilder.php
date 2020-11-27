@@ -6,7 +6,7 @@ namespace Nexus\ChatworkClient\Request\Builder;
 
 use LogicException;
 
-abstract class AbstractBuilder
+abstract class AbstractBuilder implements InterfaceBuilder
 {
     public function build(): array
     {
@@ -14,12 +14,26 @@ abstract class AbstractBuilder
 
         $data = [];
         foreach ($this as $key => $value) {
-            if (!empty($value) || 0 === $value) {
+            if (!empty($value) || '0' === $value) {
                 $data[$key] = $value;
             }
         }
 
         return $data;
+    }
+
+    /**
+     * @param array $array<int>
+     */
+    protected function arrayIdsToString(array $array): string
+    {
+        foreach ($array as $id) {
+            if (!\is_int($id)) {
+                throw new LogicException('Id must be int');
+            }
+        }
+
+        return implode(',', $array);
     }
 
     /**

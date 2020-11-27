@@ -24,9 +24,9 @@ class PostRoomRequestBuilderTest extends TestCase
             ->build();
 
         static::assertSame($array['name'], 'John');
-        static::assertSame($array['members_readonly_ids'], [1, 22, 333]);
-        static::assertSame($array['members_member_ids'], [444, 555, 666]);
-        static::assertSame($array['members_admin_ids'], [77, 88, 99]);
+        static::assertSame($array['members_readonly_ids'], '1,22,333');
+        static::assertSame($array['members_member_ids'], '444,555,666');
+        static::assertSame($array['members_admin_ids'], '77,88,99');
 
         static::assertSame($array['link_need_acceptance'], true);
         static::assertSame($array['link_code'], 'link_code_test');

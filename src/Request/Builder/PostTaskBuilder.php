@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Request\Builder;
 
-use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 use LogicException;
 use Nexus\ChatworkClient\Request\Enum\TaskLimitType;
 
@@ -44,7 +44,7 @@ class PostTaskBuilder extends AbstractBuilder implements InterfaceBuilder
         return $this;
     }
 
-    public function setLimitByCarbon(CarbonImmutable $carbon): self
+    public function setLimitByCarbon(CarbonInterface $carbon): self
     {
         $this->limit = $carbon->timestamp;
 
@@ -58,9 +58,9 @@ class PostTaskBuilder extends AbstractBuilder implements InterfaceBuilder
         return $this;
     }
 
-    public function setToIds(array $to_ids): self
+    public function setToIds(array $toIds): self
     {
-        $this->to_ids = implode(',', $to_ids);
+        $this->to_ids = $this->arrayIdsToString($toIds);
 
         return $this;
     }
