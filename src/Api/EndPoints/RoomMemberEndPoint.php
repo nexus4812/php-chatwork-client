@@ -9,6 +9,7 @@ use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\MemberFactory;
 use Nexus\ChatworkClient\Entities\Member;
 use Nexus\ChatworkClient\Entities\PutMembers;
+use Nexus\ChatworkClient\Request\Builder\PutMembersBuilder;
 
 class RoomMemberEndPoint extends AbstractEndPoint
 {
@@ -32,28 +33,25 @@ class RoomMemberEndPoint extends AbstractEndPoint
      * GET /rooms/{room_id}/members チャットのメンバー一覧を取得.
      *
      * @return array<Member>|Collection
+     *
+     * @see https://developer.chatwork.com/ja/endpoint_rooms.html#GET-rooms-room_id-members
      */
     public function getRoomMembers(): Collection
     {
-        return $this->factory->entitiesAsCollection($this->client->get("room/{$this->roomId}/members"));
+        return $this->factory->entitiesAsCollection(
+            $this->client->get("room/{$this->roomId}/members")
+        );
     }
 
     /**
      * PUT /rooms/{room_id}/members チャットのメンバーを一括変更.
      *
-     * @param array<int> $membersAdminIds
-     * @param array<int> $membersMemberIds
-     * @param array<int> $membersReadonlyIds
+     * @see https://developer.chatwork.com/ja/endpoint_rooms.html#PUT-rooms-room_id-members
      */
-    public function putRoomMembers(
-        array $membersAdminIds,
-        array $membersMemberIds = [],
-        array $membersReadonlyIds = []
-    ): PutMembers {
-        return $this->factory->putEntity($this->client->put("rooms/{$this->roomId}/members", [
-            'members_admin_ids' => $membersAdminIds,
-            'members_member_ids' => $membersMemberIds,
-            'members_readonly_ids' => $membersReadonlyIds,
-        ]));
+    public function putRoomMembers(PutMembersBuilder $putMembersBuilder): PutMembers
+    {
+        return $this->factory->putEntity(
+            $this->client->put("rooms/{$this->roomId}/members", $putMembersBuilder->build())
+        );
     }
 }
