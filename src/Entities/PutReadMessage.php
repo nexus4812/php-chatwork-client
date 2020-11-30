@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Entities;
 
-class PutMessage implements EntityInterface
+class PutReadMessage implements EntityInterface
 {
     /**
      * @var int

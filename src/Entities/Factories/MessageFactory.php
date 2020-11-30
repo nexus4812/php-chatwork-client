@@ -7,7 +7,7 @@ namespace Nexus\ChatworkClient\Entities\Factories;
 use Nexus\ChatworkClient\Entities\Account;
 use Nexus\ChatworkClient\Entities\Message;
 use Nexus\ChatworkClient\Entities\PostMessages;
-use Nexus\ChatworkClient\Entities\PutMessage;
+use Nexus\ChatworkClient\Entities\PutReadMessage;
 
 class MessageFactory extends AbstractEntityFactory implements EntityFactoryInterface
 {
@@ -24,8 +24,8 @@ class MessageFactory extends AbstractEntityFactory implements EntityFactoryInter
         return $this->createEntity(new PostMessages(), $data);
     }
 
-    public function putEntity(array $data): PutMessage
+    public function putEntity(array $data): PutReadMessage
     {
-        return $this->createEntity(new PutMessage(), $data);
+        return $this->createEntity(new PutReadMessage(), $data);
     }
 }

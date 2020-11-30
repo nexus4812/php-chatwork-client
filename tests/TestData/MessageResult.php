@@ -40,12 +40,36 @@ trait MessageResult
 }', true);
     }
 
-    public function messageItemPut()
+    public function messageItemPutRead()
     {
         return json_decode('
 {
   "unread_num": 461,
   "mention_num": 0
+}', true);
+    }
+
+    public function messageItemPut()
+    {
+        return json_decode('
+{
+  "message_id": "1234"
+}', true);
+    }
+
+    public function messageItemPost()
+    {
+        return json_decode('
+{
+  "message_id": "1234"
+}', true);
+    }
+
+    public function messageItemDelete()
+    {
+        return json_decode('
+{
+  "message_id": "1234"
 }', true);
     }
 }

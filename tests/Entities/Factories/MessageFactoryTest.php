@@ -7,7 +7,7 @@ namespace Nexus\ChatworkClient\Entities\Factories;
 use Nexus\ChatworkClient\Api\TestData\MessageResult;
 use Nexus\ChatworkClient\Entities\Account;
 use Nexus\ChatworkClient\Entities\Message;
-use Nexus\ChatworkClient\Entities\PutMessage;
+use Nexus\ChatworkClient\Entities\PutReadMessage;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,9 +40,9 @@ final class MessageFactoryTest extends TestCase
     /**
      * @dataProvider providerPutEntity
      */
-    public function testPutEntity(PutMessage $entity): void
+    public function testPutEntity(PutReadMessage $entity): void
     {
-        static::assertInstanceOf(PutMessage::class, $entity);
+        static::assertInstanceOf(PutReadMessage::class, $entity);
         static::assertSame($entity->unread_num, 461);
         static::assertSame($entity->mention_num, 0);
     }
@@ -50,7 +50,7 @@ final class MessageFactoryTest extends TestCase
     public function providerPutEntity(): iterable
     {
         $factory = new MessageFactory();
-        yield [$factory->putEntity($this->messageItemPut())];
+        yield [$factory->putEntity($this->messageItemPutRead())];
     }
 
     public function providerGetEntity(): iterable
