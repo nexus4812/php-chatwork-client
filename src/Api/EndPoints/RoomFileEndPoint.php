@@ -8,7 +8,6 @@ use Illuminate\Support\Collection;
 use Nexus\ChatworkClient\Client\ClientInterface;
 use Nexus\ChatworkClient\Entities\Factories\FileFactory;
 use Nexus\ChatworkClient\Entities\File;
-use Nexus\ChatworkClient\Request\Multipart\GuzzleMultipartRequest;
 
 class RoomFileEndPoint extends AbstractEndPoint
 {
@@ -33,26 +32,22 @@ class RoomFileEndPoint extends AbstractEndPoint
      *
      * @return array<File>|Collection
      */
-    public function getRoomFiles(int $accountId = 0): Collection
+    public function getRoomFiles(?int $accountId = null): Collection
     {
         return $this->factory->entitiesAsCollection(
-            $this->client->get("rooms/{$this->roomId}/files", [
-                'account_id' => 0 !== $accountId ? $accountId : 0,
-            ])
+            $this->client->get("rooms/{$this->roomId}/files", $accountId ? ['account_id' => $accountId] : [])
         );
     }
 
     /**
      * POST /rooms/{room_id}/filesチャットに新しいファイルをアップロード.
      */
-    public function postRoomFile(string $filePath, string $message = ''): int
+    public function postRoomFile(string $filePointer, ?string $message = null): int
     {
-        $r = GuzzleMultipartRequest::create()
-            ->addContents('message', $message)
-            ->addFileContents('file', $filePath)
-            ->getResult();
-
-        return $this->client->postMultipart("rooms/{$this->roomId}/files", $r)['file_id'];
+        return $this->client->postMultipart("rooms/{$this->roomId}/files", [
+            'file' => $filePointer,
+            'message' => $message,
+        ])['file_id'];
     }
 
     /**

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Request\Builder;
 
-use LogicException;
+
+
+use Nexus\ChatworkClient\Exception\LogicException;
 
 abstract class AbstractBuilder implements InterfaceBuilder
 {

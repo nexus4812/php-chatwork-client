@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Client;
 
-use RuntimeException;
+use Nexus\ChatworkClient\Exception\ClinetException;
 
 interface ClientInterface
 {
     /**
      * @param array<string, int> $query
      *
-     * @throws RuntimeException
+     * @throws ClinetException
      *
      * @return array<string, array<string>>
      */
@@ -20,7 +20,7 @@ interface ClientInterface
     /**
      * @param array<string, int> $data
      *
-     * @throws RuntimeException
+     * @throws ClinetException
      *
      * @return array<string, array<string>>
      */
@@ -29,7 +29,7 @@ interface ClientInterface
     /**
      * @param array<string, int> $data
      *
-     * @throws RuntimeException
+     * @throws ClinetException
      *
      * @return array<string, array<string>>
      */
@@ -38,7 +38,7 @@ interface ClientInterface
     /**
      * @param array<string, int> $query
      *
-     * @throws RuntimeException
+     * @throws ClinetException
      *
      * @return array<string, array<string>>|null
      */
@@ -47,7 +47,7 @@ interface ClientInterface
     /**
      * @param array<string, int> $data
      *
-     * @throws RuntimeException
+     * @throws ClinetException
      *
      * @return array<string, array<string>>
      */

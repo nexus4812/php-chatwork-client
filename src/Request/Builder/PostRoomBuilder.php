@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\ChatworkClient\Request\Builder;
 
-use LogicException;
+use Nexus\ChatworkClient\Exception\LogicException;
 use Nexus\ChatworkClient\Request\Enum\IconPreset;
 
 class PostRoomBuilder extends AbstractBuilder implements InterfaceBuilder

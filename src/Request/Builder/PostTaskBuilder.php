@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Nexus\ChatworkClient\Request\Builder;
 
 use Carbon\CarbonInterface;
-use LogicException;
+use Nexus\ChatworkClient\Exception\LogicException;
 use Nexus\ChatworkClient\Request\Enum\TaskLimitType;
 
 class PostTaskBuilder extends AbstractBuilder implements InterfaceBuilder

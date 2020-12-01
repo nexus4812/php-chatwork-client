@@ -6,6 +6,7 @@ namespace Nexus\ChatworkClient\Client;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception;
+use Nexus\ChatworkClient\Exception\ClinetException;
 
 class GuzzleClient implements ClientInterface
 {
@@ -19,48 +20,50 @@ class GuzzleClient implements ClientInterface
         $this->client = $client;
     }
 
-    /**
-     * @throws Exception\GuzzleException
-     */
     public function get(string $path, array $query = []): array
     {
-        return $this->jsonDecode($this->client->get($path, ['query' => $query])->getBody()->getContents());
+        return $this->request('get', $path, [
+            'query' => $query,
+        ]);
     }
 
-    /**
-     * @throws Exception\GuzzleException
-     */
     public function post(string $path, array $data = []): array
     {
-        return $this->jsonDecode($this->client->post($path, $data)->getBody()->getContents());
+        return $this->request('post', $path, [
+            'form_params' => $data,
+        ]);
     }
 
-    /**
-     * @throws Exception\GuzzleException
-     */
     public function put(string $path, array $data = []): array
     {
-        return $this->jsonDecode($this->client->put($path, $data)->getBody()->getContents());
+        return $this->request('put', $path, [
+            'form_params' => $data,
+        ]);
     }
 
-    /**
-     * @throws Exception\GuzzleException
-     */
-    public function delete(string $path, array $query = [])
+    public function delete(string $path, array $query = []): array
     {
-        return $this->jsonDecode($this->client->delete($path, ['query' => $query])->getBody()->getContents());
+        return $this->request('delete', $path, [
+            'query' => $query,
+        ]);
     }
 
-    /**
-     * @throws Exception\GuzzleException
-     */
     public function postMultipart(string $path, array $data = []): array
     {
-        return $this->jsonDecode($this->client->post($path, ['multipart' => $data])->getBody()->getContents());
+        return $this->request('post', $path, [
+            'multipart' => $data,
+        ]);
     }
 
-    private function jsonDecode(string $json): array
+    /**
+     * @throws ClinetException
+     */
+    private function request(string $method, string $path, array $options = []): array
     {
-        return json_decode($json, true);
+        try {
+            return json_decode($this->client->request($method, $path, $options)->getBody()->getContents(), true);
+        } catch (Exception\GuzzleException $e) {
+            throw new ClinetException(sprintf('Request error. method = %s, path = %s', $method, $path), $e->getCode(), $e);
+        }
     }
 }
