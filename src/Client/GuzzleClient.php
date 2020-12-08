@@ -6,7 +6,7 @@ namespace Nexus\ChatworkClient\Client;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception;
-use Nexus\ChatworkClient\Exception\ClinetException;
+use Nexus\ChatworkClient\Exception\ClientException;
 
 class GuzzleClient implements ClientInterface
 {
@@ -51,19 +51,32 @@ class GuzzleClient implements ClientInterface
     public function postMultipart(string $path, array $data = []): array
     {
         return $this->request('post', $path, [
-            'multipart' => $data,
+            'multipart' => $this->generateMultipartRequest($data),
         ]);
     }
 
     /**
-     * @throws ClinetException
+     * @throws ClientException
      */
     private function request(string $method, string $path, array $options = []): array
     {
         try {
             return json_decode($this->client->request($method, $path, $options)->getBody()->getContents(), true);
         } catch (Exception\GuzzleException $e) {
-            throw new ClinetException(sprintf('Request error. method = %s, path = %s', $method, $path), $e->getCode(), $e);
+            throw new ClientException(sprintf('Request error. method = %s, path = %s', $method, $path), $e->getCode(), $e);
         }
+    }
+
+    private function generateMultipartRequest(array $data): array
+    {
+        $r = [];
+        foreach ($data as $k => $v) {
+            $r[] = [
+                'name' => $k,
+                'contents' => $v,
+            ];
+        }
+
+        return $r;
     }
 }

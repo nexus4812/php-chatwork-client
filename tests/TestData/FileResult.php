@@ -41,4 +41,12 @@ trait FileResult
   }
 ]', true);
     }
+
+    public function fileItemsPost()
+    {
+        return json_decode('
+{
+  "file_id": 1234
+}', true);
+    }
 }
