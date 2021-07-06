@@ -1,5 +1,14 @@
 {
   "name": "nexus/php-chatwork-client",
+  "description": "Chatwork API client configured in PHP",
+  "keywords": ["chatwork", "api", "php"],
+  "license": "MIT",
+
+  "authors": [
+    {
+      "name": "nexus4812"
+    }
+  ],
 
   "require": {
     "php": ">=7.1.3",
@@ -27,6 +36,11 @@
     "psr-4": {
       "Nexus\\ChatworkClient\\": "tests/"
     }
+  },
+
+  "repositories": {
+    "type": "git",
+    "url": "https://github.com/nexus4812/php-chatwork-client"
   },
 
   "scripts": {
