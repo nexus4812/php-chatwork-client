@@ -31,7 +31,7 @@ class RoomMessageEndPoint extends AbstractEndPoint
     /**
      * GET /rooms/{room_id}/messages チャットのメッセージ一覧を取得。パラメータ未指定だと前回取得分からの差分のみを返します。(最大100件まで取得).
      *
-     * @return array<Message>|Collection
+     * @return Collection<Message>
      *
      * @see https://developer.chatwork.com/ja/endpoint_rooms.html#GET-rooms-room_id-messages
      */
@@ -95,8 +95,6 @@ class RoomMessageEndPoint extends AbstractEndPoint
 
     /**
      * PUT /rooms/{room_id}/messages/{message_id} チャットのメッセージを更新する。
-     *
-     * @return int message_id
      *
      * @see https://developer.chatwork.com/ja/endpoint_rooms.html#PUT-rooms-room_id-messages-message_id
      */

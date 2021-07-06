@@ -60,7 +60,7 @@ class PostRoomBuilder extends AbstractBuilder implements InterfaceBuilder
     }
 
     /**
-     * @param $ids array<int>
+     * @param array<int> $ids
      *
      * @return PostRoomBuilder
      */
@@ -72,7 +72,7 @@ class PostRoomBuilder extends AbstractBuilder implements InterfaceBuilder
     }
 
     /**
-     * @param $ids array<int>
+     * @param array<int> $ids
      */
     public function setMembersMemberIds(array $ids): self
     {
@@ -82,7 +82,7 @@ class PostRoomBuilder extends AbstractBuilder implements InterfaceBuilder
     }
 
     /**
-     * @param $ids array<int>
+     * @param array<int> $ids
      */
     public function setMembersAdminIds(array $ids): self
     {

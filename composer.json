@@ -38,15 +38,11 @@
     }
   },
 
-  "repositories": {
-    "type": "git",
-    "url": "https://github.com/nexus4812/php-chatwork-client"
-  },
-
   "scripts": {
     "test": "./vendor/bin/phpunit tests",
     "cs": "./vendor/bin/php-cs-fixer fix",
-    "stan": "vendor/bin/phpstan analyse -l 1 ./src",
+    "coverage": "phpdbg -qrr ./vendor/bin/phpunit --coverage-html ./.coverage",
+    "stan": "vendor/bin/phpstan analyse -l 2 ./src",
     "ck": "composer cs; composer stan; composer test"
   }
 }

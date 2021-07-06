@@ -10,9 +10,9 @@ use Nexus\ChatworkClient\Entities\EntityInterface;
 abstract class AbstractEntityFactory implements EntityFactoryInterface
 {
     /**
-     * @param $data array<string,array<string>>
+     * @param array<string|array<string>> $data
      *
-     * @return array<EntityInterface,mixed> (mixed is concrete EntityInterface)
+     * @return array<EntityInterface>
      */
     public function entities(array $data): array
     {
@@ -25,7 +25,7 @@ abstract class AbstractEntityFactory implements EntityFactoryInterface
     }
 
     /**
-     * @param $entity EntityInterface|mixed
+     * @param EntityInterface|mixed $entity
      * @param array<string> $columns
      *
      * @return EntityInterface | mixed

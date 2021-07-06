@@ -24,7 +24,7 @@ class IncomingRequestsEndPoint extends AbstractEndPoint
     /**
      * GET /incoming_requests 自分に対するコンタクト承認依頼一覧を取得する(※100件まで取得可能。今後、より多くのデータを取得する為のページネーションの仕組みを提供予定).
      *
-     * @return array<IncomingRequest>|Collection
+     * @return Collection<IncomingRequest>
      *
      * @see https://developer.chatwork.com/ja/endpoint_incoming_requests.html#GET-incoming_requests
      */

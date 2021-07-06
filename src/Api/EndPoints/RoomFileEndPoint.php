@@ -31,7 +31,7 @@ class RoomFileEndPoint extends AbstractEndPoint
     /**
      * GET /rooms/{room_id}/filesチャットのファイル一覧を取得 (※100件まで取得可能。今後、より多くのデータを取得する為のページネーションの仕組みを提供予定).
      *
-     * @return array<File>|Collection
+     * @return Collection<File>
      *
      * @see https://developer.chatwork.com/ja/endpoint_rooms.html#GET-rooms-room_id-files
      */

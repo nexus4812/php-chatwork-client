@@ -32,7 +32,7 @@ class RoomMemberEndPoint extends AbstractEndPoint
     /**
      * GET /rooms/{room_id}/members チャットのメンバー一覧を取得.
      *
-     * @return array<Member>|Collection
+     * @return Collection<Member>
      *
      * @see https://developer.chatwork.com/ja/endpoint_rooms.html#GET-rooms-room_id-members
      */

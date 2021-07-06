@@ -27,7 +27,7 @@ class RoomEndPoint extends AbstractEndPoint
     /**
      * GET /rooms 自分のチャット一覧の取得.
      *
-     * @return array<Room>
+     * @return Collection<Room>
      *
      * @see https://developer.chatwork.com/ja/endpoint_rooms.html#GET-rooms
      */

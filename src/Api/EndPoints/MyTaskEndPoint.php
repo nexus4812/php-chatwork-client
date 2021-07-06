@@ -24,7 +24,7 @@ class MyTaskEndPoint extends AbstractEndPoint
     /**
      * GET /my/tasks 自分のタスク一覧を取得する。(※100件まで取得可能。今後、より多くのデータを取得する為のページネーションの仕組みを提供予定).
      *
-     * @return array<Task>|Collection
+     * @return Collection<Task>
      *
      * @see https://developer.chatwork.com/ja/endpoint_my.html#GET-my-tasks
      */

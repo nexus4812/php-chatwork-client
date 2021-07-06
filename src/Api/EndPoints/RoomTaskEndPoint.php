@@ -32,7 +32,7 @@ class RoomTaskEndPoint extends AbstractEndPoint
     /**
      * GET /rooms/{room_id}/tasksチャットのタスク一覧を取得 (※100件まで取得可能。今後、より多くのデータを取得する為のページネーションの仕組みを提供予定).
      *
-     * @return array<Task>|Collection
+     * @return Collection<Task>
      *
      * @see https://developer.chatwork.com/ja/endpoint_rooms.html#GET-rooms-room_id-tasks
      */
