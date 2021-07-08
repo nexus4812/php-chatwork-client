@@ -52,7 +52,10 @@ class RoomTaskEndPoint extends AbstractEndPoint
      */
     public function postRoomsTasks(PostTaskBuilder $builder): array
     {
-        return $this->client->post("rooms/{$this->roomId}/tasks", $builder->build())['task_ids'];
+        /** @var array<int> $ids */
+        $ids = $this->client->post("rooms/{$this->roomId}/tasks", $builder->build())['task_ids'];
+
+        return $ids;
     }
 
     /**
@@ -74,7 +77,7 @@ class RoomTaskEndPoint extends AbstractEndPoint
      */
     public function putRoomTaskStatus(int $taskId, TaskStatus $status): int
     {
-        return $this->client->put(
+        return (int)$this->client->put(
             "rooms/{$this->roomId}/tasks/{$taskId}/status", ['body' => $status->toString()]
         )['task_id'];
     }

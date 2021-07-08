@@ -9,17 +9,17 @@ use Nexus\ChatworkClient\Exception\LogicException;
 class PutMembersBuilder extends AbstractBuilder implements InterfaceBuilder
 {
     /**
-     * @var array<int>
+     * @var string カンマ区切りのID
      */
     protected $members_admin_ids;
 
     /**
-     * @var array<int>
+     * @var string カンマ区切りのID
      */
     protected $members_member_ids;
 
     /**
-     * @var array<int>
+     * @var string カンマ区切りのID
      */
     protected $members_readonly_ids;
 

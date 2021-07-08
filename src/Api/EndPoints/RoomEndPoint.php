@@ -45,7 +45,7 @@ class RoomEndPoint extends AbstractEndPoint
      */
     public function postRoomByBuilder(PostRoomBuilder $builder): int
     {
-        return $this->client->post('rooms', $builder->build())['room_id'];
+        return (int)$this->client->post('rooms', $builder->build())['room_id'];
     }
 
     /**
@@ -67,7 +67,7 @@ class RoomEndPoint extends AbstractEndPoint
      */
     public function putRoomByBuilder(int $roomId, PutRoomBuilder $builder): int
     {
-        return $this->client->put("rooms/{$roomId}", $builder->build())['room_id'];
+        return (int)$this->client->put("rooms/{$roomId}", $builder->build())['room_id'];
     }
 
     /**

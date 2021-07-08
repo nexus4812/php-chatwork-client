@@ -12,13 +12,13 @@ class GuzzleMultipartRequest
     }
 
     /**
-     * @var array<string, array>
+     * @var array<mixed>
      */
     private $request;
 
     public function addContents(string $name, string $contents, array $header = []): self
     {
-        $this->request = array_push($this->request, [
+        $this->request = array_merge($this->request, [
             'name' => $name,
             'contents' => $contents,
             'header' => $header,
@@ -29,7 +29,7 @@ class GuzzleMultipartRequest
 
     public function addFileContents(string $name, string $filePath, string $fileName = null, array $header = []): self
     {
-        $this->request = array_push($this->request, [
+        $this->request = array_merge($this->request, [
             'name' => $name,
             'contents' => fopen($filePath, 'r'),
             'filename' => $fileName,

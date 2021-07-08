@@ -13,7 +13,7 @@ abstract class AbstractBuilder implements InterfaceBuilder
         $this->assert();
 
         $data = [];
-        foreach ($this as $key => $value) {
+        foreach (get_object_vars($this) as $key => $value) {
             if (!empty($value) || '0' === $value) {
                 $data[$key] = $value;
             }
@@ -23,7 +23,7 @@ abstract class AbstractBuilder implements InterfaceBuilder
     }
 
     /**
-     * @param array $array<int>
+     * @param array<int> $array
      */
     protected function arrayIdsToString(array $array): string
     {

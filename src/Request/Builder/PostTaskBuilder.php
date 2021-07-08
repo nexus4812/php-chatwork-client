@@ -26,7 +26,7 @@ class PostTaskBuilder extends AbstractBuilder implements InterfaceBuilder
     protected $limit_type;
 
     /**
-     * @var array<int>
+     * @var string カンマ区切りのID
      */
     protected $to_ids;
 

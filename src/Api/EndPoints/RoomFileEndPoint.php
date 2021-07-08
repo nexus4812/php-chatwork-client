@@ -56,7 +56,7 @@ class RoomFileEndPoint extends AbstractEndPoint
             throw new FileNotReadException("Failed to read file '{$filePath}'");
         }
 
-        return $this->client->postMultipart("rooms/{$this->roomId}/files", [
+        return (int)$this->client->postMultipart("rooms/{$this->roomId}/files", [
             'file' => $resource,
             'message' => $message,
         ])['file_id'];

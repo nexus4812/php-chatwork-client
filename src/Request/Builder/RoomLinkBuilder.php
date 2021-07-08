@@ -17,7 +17,7 @@ class RoomLinkBuilder extends AbstractBuilder implements InterfaceBuilder
     protected $description;
 
     /**
-     * @var int
+     * @var string
      */
     protected $need_acceptance;
 
